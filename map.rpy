@@ -9,10 +9,10 @@ init python:
 
     class LandMap:
         def __init__(self, map_grid, img, start_x, start_y):
-             self.map = map_grid
-             self.img = img
-             self.center_x = start_x
-             self.center_y = start_y
+            self.map = map_grid
+            self.img = img
+            self.center_x = start_x
+            self.center_y = start_y
 
         def isEmpty (self, x, y):
             return self.map[y][x].occupant is None
@@ -30,14 +30,14 @@ init python:
 
     class MapDenizen:
         def __init__(self, x, y, img, width, height):
-             self.x = x
-             self.y = y
-             self.img = img
-             self.width = width
-             self.height = height
+            self.x = x
+            self.y = y
+            self.img = img
+            self.width = width
+            self.height = height
 
         def getOffset (self):
-             return (tile_size - self.width, tile_size - self.height)
+            return (tile_size - self.width, tile_size - self.height)
 
     house_map = []
 
@@ -47,7 +47,7 @@ init python:
 
         #number of columns
         for j in range (10):
-             new_row.append(MapTile())
+            new_row.append(MapTile())
         house_map.append(new_row)
 
     gray_house = LandMap(house_map, "gray house indoors.png", 4, 5)
