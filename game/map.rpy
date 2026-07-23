@@ -174,8 +174,8 @@ init python:
     blacksmith = MapDenizen (24, 7, "lancer.png", 72, 70, shop)
     town.occupy (24, 7, blacksmith)
 
-    library = MapDenizen (34, 7, "lancer.png", 72, 70, shop)
-    town.occupy (34, 7, library)
+    library_door = MapDenizen (34, 7, "lancer.png", 72, 70, library)
+    town.occupy (34, 7, library_door)
 
     bridge = MapDenizen (27, 26, "lancer.png", 72, 70, shop)
     town.occupy (27, 26, bridge)

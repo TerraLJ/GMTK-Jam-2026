@@ -60,7 +60,7 @@
         renpy.jump("shopMenu")
 
     def library (denizen):
-        pass
+        renpy.jump("library")
 
     def blacksmith (denizen):
         pass
