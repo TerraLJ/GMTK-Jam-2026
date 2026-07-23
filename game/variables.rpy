@@ -7,6 +7,7 @@ default curseTransferCompleted = False
 # Variables that are shared across both characters because they reset
 default swordLevel = 0
 default magicLevel = 0
+default timesMagicPracticed = 0
 default curseTransferObtained = False
 
 # Discovery flags are not reset across runs
@@ -30,6 +31,7 @@ init python:
         # Function to easily reset variables
         swordLevel = 0
         magicLevel = 0
+        timesMagicPracticed = 0
         curseTransferObtained = False
         # discoveries persist between runs
         day = 1
@@ -50,3 +52,23 @@ init python:
         if extraAction:
             actionsDone += 1
         extraAction = False
+
+    def updateMagic():
+        # returns True if level up occurred
+        timesMagicPracticed += 1
+        if timesMagicPracticed == 1 and magicLevel < 1:
+            magicLevel += 1
+            return True
+        elif timesMagicPracticed == 2 and magicLevel < 2:
+            magicLevel += 1
+            return True
+        elif timesMagicPracticed == 4 and magicLevel < 3:
+            magicLevel += 1
+            return True
+        elif timesMagicPracticed == 6 and magicLevel < 4:
+            magicLevel += 1
+            return True
+        elif timesMagicPracticed == 9 and magicLevel < 5:
+            magicLevel += 1
+            return True
+        return False
