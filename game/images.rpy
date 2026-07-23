@@ -28,53 +28,53 @@ init python:
 
 image gray = "gray [g_dir][move]"
 
-image gray front = "gray_healthy_front_1"
-image gray back = "gray_healthy_back_1"
-image gray left = "gray_healthy_left_1"
-image gray right = "gray_healthy_right_1"
+image gray front = "gray_front_1"
+image gray back = "gray_back_1"
+image gray left = "gray_left_1"
+image gray right = "gray_right_1"
 
 #the numbers are the timing delay between animation frames
 image gray front_move:
-    "gray_healthy_front_1"
+    "gray_front_1"
     0.15
-    "gray_healthy_front_2"
+    "gray_front_2"
     0.2
-    "gray_healthy_front_3"
+    "gray_front_3"
     0.15
-    "gray_healthy_front_4"
+    "gray_front_4"
     0.2
     repeat
 
 image gray back_move:
-    "gray_healthy_back_1"
+    "gray_back_1"
     0.15
-    "gray_healthy_back_2"
+    "gray_back_2"
     0.2
-    "gray_healthy_back_3"
+    "gray_back_3"
     0.15
-    "gray_healthy_back_4"
+    "gray_back_4"
     0.2
     repeat
 
 #TODO: add left and right
 image gray left_move:
-    "gray_healthy_front_1"
+    "gray_front_1"
     0.15
-    "gray_healthy_front_2"
+    "gray_front_2"
     0.2
-    "gray_healthy_front_3"
+    "gray_front_3"
     0.15
-    "gray_healthy_front_4"
+    "gray_front_4"
     0.2
     repeat
 
 image gray right_move:
-    "gray_healthy_back_1"
+    "gray_back_1"
     0.15
-    "gray_healthy_back_2"
+    "gray_back_2"
     0.2
-    "gray_healthy_back_3"
+    "gray_back_3"
     0.15
-    "gray_healthy_back_4"
+    "gray_back_4"
     0.2
     repeat
