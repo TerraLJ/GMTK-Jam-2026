@@ -26,7 +26,7 @@ screen map_screen (aMap):
                 add tile.occupant.img:
                     pos (tile_lc_x + offx, tile_lc_y + offy)
 
-    if (rpg == True):
+    if (rpg == True and commentFlag == False):
         # Detect when the key is first pressed down
         key "keydown_K_UP" action SetVariable("moving_up", True)
         key "keydown_K_DOWN" action SetVariable("moving_down", True)

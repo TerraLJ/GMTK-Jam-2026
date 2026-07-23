@@ -5,6 +5,7 @@
 
 define p = Character("Pink", color = "#ff7afb")
 define g = Character("Gray", color = "#3d383d")
+default commentFlag = False
 default shopFlag = False
 default rpg = True
 default room_name = "gray_house"
@@ -20,13 +21,12 @@ label start:
     #scene bg room
 
     #put the before-rpg stuff here
-    "."
+    jump beginning
 
-    #find a way to disable and enable it
-    if (rpg == True):
-        $ room = getattr(store, room_name)
-        call screen map_screen(room)
-
-    #show pink happy
+    label rpg_section:
+        #find a way to disable and enable it
+        if (rpg == True):
+            $ room = getattr(store, room_name)
+            call screen map_screen(room)
 
     return
