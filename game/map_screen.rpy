@@ -26,9 +26,29 @@ screen map_screen (aMap):
                 add tile.occupant.img:
                     pos (tile_lc_x + offx, tile_lc_y + offy)
 
-    key "K_UP" action Function (gray_house.moveDenizen, gray_sprite.x, gray_sprite.y, 0, -1), SetVariable ("g_dir", "back")
-    key "K_DOWN" action Function (gray_house.moveDenizen, gray_sprite.x, gray_sprite.y, 0, 1), SetVariable ("g_dir", "front")
-    key "K_LEFT" action Function (gray_house.moveDenizen, gray_sprite.x, gray_sprite.y, -1, 0), SetVariable ("g_dir", "left")
-    key "K_RIGHT" action Function (gray_house.moveDenizen, gray_sprite.x, gray_sprite.y, 1, 0), SetVariable ("g_dir", "right")
+    # Detect when the key is first pressed down
+    key "keydown_K_UP" action SetVariable("moving_up", True)
+    key "keydown_K_DOWN" action SetVariable("moving_down", True)
+    key "keydown_K_LEFT" action SetVariable("moving_left", True)
+    key "keydown_K_RIGHT" action SetVariable("moving_right", True)
+
+    # Detect when the player releases the key
+    key "keyup_K_UP" action SetVariable("moving_up", False), SetVariable ("move", "")
+    key "keyup_K_DOWN" action SetVariable("moving_down", False), SetVariable ("move", "")
+    key "keyup_K_LEFT" action SetVariable("moving_left", False), SetVariable ("move", "")
+    key "keyup_K_RIGHT" action SetVariable("moving_right", False), SetVariable ("move", "")
+
+    # A repeating timer that shifts position smoothly if a state is True
+    if moving_up:
+        timer 0.075 repeat True action [Function (gray_house.moveDenizen, gray_sprite.x, gray_sprite.y, 0, -1), SetVariable ("g_dir", "back"), SetVariable ("move", "_move")]
+
+    elif moving_down:
+        timer 0.075 repeat True action [Function (gray_house.moveDenizen, gray_sprite.x, gray_sprite.y, 0, 1), SetVariable ("g_dir", "front"), SetVariable ("move", "_move")]
+
+    elif moving_left:
+        timer 0.075 repeat True action [Function (gray_house.moveDenizen, gray_sprite.x, gray_sprite.y, -1, 0), SetVariable ("g_dir", "left"), SetVariable ("move", "_move")]
+
+    elif moving_right:
+        timer 0.075 repeat True action [Function (gray_house.moveDenizen, gray_sprite.x, gray_sprite.y, 1, 0), SetVariable ("g_dir", "right"), SetVariable ("move", "_move")]
 
     key "K_RETURN" action Function (grayInteracts)

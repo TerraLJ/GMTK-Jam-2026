@@ -3,6 +3,7 @@ image pink happy = "pink_healthy_happy.png"
 
 #default direction facing is front
 default g_dir = "front"
+default move = ""
 
 #how offset we need to be for the sprite to be in the right space
 define g_offset = -10
@@ -25,10 +26,15 @@ init python:
         x, y = getFacingTile()
         gray_house.triggerInteraction (x, y)
 
-image gray = "gray [g_dir]"
+image gray = "gray [g_dir][move]"
+
+image gray front = "gray_healthy_front_1"
+image gray back = "gray_healthy_back_1"
+image gray left = "gray_healthy_left_1"
+image gray right = "gray_healthy_right_1"
 
 #the numbers are the timing delay between animation frames
-image gray front:
+image gray front_move:
     "gray_healthy_front_1"
     0.15
     "gray_healthy_front_2"
@@ -39,7 +45,7 @@ image gray front:
     0.2
     repeat
 
-image gray back:
+image gray back_move:
     "gray_healthy_back_1"
     0.15
     "gray_healthy_back_2"
@@ -51,7 +57,7 @@ image gray back:
     repeat
 
 #TODO: add left and right
-image gray left:
+image gray left_move:
     "gray_healthy_front_1"
     0.15
     "gray_healthy_front_2"
@@ -62,7 +68,7 @@ image gray left:
     0.2
     repeat
 
-image gray right:
+image gray right_move:
     "gray_healthy_back_1"
     0.15
     "gray_healthy_back_2"

@@ -4,6 +4,10 @@
 #items are obstacles
 
 define tile_size = 16
+define moving_up = False
+define moving_down = False
+define moving_left = False
+define moving_right = False
 
 init python:
 
