@@ -1,5 +1,4 @@
 ﻿#the image animation goes here! and if we want specific naming conventions
-image pink happy = "pink_healthy_happy.png"
 
 #default direction facing is front
 default g_dir = "front"
