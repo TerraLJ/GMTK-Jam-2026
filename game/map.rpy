@@ -89,7 +89,7 @@ init python:
 
     house_map = []
 
-    #number of rows; i put a random number i'll be so deadass
+    #number of rows for the house
     for i in range(11):
         new_row = []
 
@@ -98,6 +98,18 @@ init python:
             new_row.append(MapTile())
         house_map.append(new_row)
 
+    town_map = []
+
+    #number of rows for the town
+    for i in range(11):
+        new_row = []
+
+        #number of columns
+        for j in range (12):
+            new_row.append(MapTile())
+        town_map.append(new_row)
+
+    #TODO: change the center
     gray_house = LandMap(house_map, "gray house indoors.png", 4, 9)
 
     #TODO: change this to fit the sprite dimensions. also idk why 5, 5
@@ -112,3 +124,6 @@ init python:
     #TODO: interactables. lancer is my default
     lancer = MapDenizen (3, 10, "lancer.png", 72, 70, disappear)
     gray_house.occupy (3, 10, lancer)
+
+    #TODO: Town layout
+    town = LandMap(town_map, "town base.png", 4, 9)

@@ -13,5 +13,3 @@
         #TODO: keep track of the right room
         #TODO: stop hardcoding everything to this one fucking room
         gray_house.unoccupy (denizen.x, denizen.y)
-
-    #def comment (denizen):

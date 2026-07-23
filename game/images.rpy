@@ -24,7 +24,8 @@ init python:
 
     def grayInteracts ():
         x, y = getFacingTile()
-        gray_house.triggerInteraction (x, y)
+
+        room.triggerInteraction (x, y)
 
 image gray = "gray [g_dir][move]"
 

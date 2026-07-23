@@ -16,28 +16,27 @@ label start:
 
     #scene bg room
     $commentFlag = False
+    $rpg = True
+    $room = gray_house
 
-    show screen map_screen(gray_house)
+    window auto
 
-    # This shows a character sprite. A placeholder is used, but you can
-    # replace it by adding a file named "eileen happy.png" to the images
-    # directory.
+    #put the before-rpg stuff here
+    "."
+
+    #find a way to disable and enable it
+    if (rpg == True):
+        show screen map_screen(room)
+
+        # Freeze progression until commentFlag is True
+        while not commentFlag:
+            $ renpy.pause(0.1, hard=True)
+
 
     #show pink happy
 
-    # These display lines of dialogue.
-
-    "."
-    window hide
-
-    $gray_house.moveDenizen (gray_sprite.x, gray_sprite.y, 0, -1)
-
-    "."
-
-    #p "You've created a new Ren'Py game."
-
-    #p "Once you add a story, pictures, and music, you can release it to the world!"
-
-    # This ends the game.
+    #put vn stuff here?
+    else:
+        "."
 
     return
