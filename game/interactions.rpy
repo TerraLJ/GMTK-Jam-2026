@@ -12,6 +12,13 @@
     def disappear(denizen):
         room.unoccupy (denizen.x, denizen.y)
 
+    def self_op(denizen): pass
+    def no_op(denizen): pass
+    def disappear(denizen): room.unoccupy (denizen.x, denizen.y)
+    def shop (denizen): renpy.jump("shopMenu")
+    def library (denizen): pass
+    def blacksmith (denizen): pass
+
     def leave_room (denizen):
         global room_name
         global room
@@ -25,12 +32,12 @@
         store.move = ""
 
         if room is not None:
-            room.unoccupy(gray_sprite.x, gray_sprite.y)
+            room.unoccupy(store.gray_sprite.x, store.gray_sprite.y)
 
-        if (room is not None and room_name == "gray_house"):
+        if (room_name == "gray_house"):
             room_name = "town"
-            teleport_x = 13
-            teleport_y = 14
+            teleport_x = 23
+            teleport_y = 17
         else:
             room_name = "gray_house"
             teleport_x = 9
@@ -38,11 +45,16 @@
 
         room = getattr(store, room_name)
         
-        room.occupy (teleport_x, teleport_y, gray_sprite)
+        # FIX: Relocate the sprite position and map arrays correctly
+        store.gray_sprite.x = teleport_x
+        store.gray_sprite.y = teleport_y
+        room.occupy(teleport_x, teleport_y, store.gray_sprite)
+        
+        # FIX: Align the room camera onto the fresh spawn coordinate location
+        room.center_x = teleport_x
+        room.center_y = teleport_y
 
-        renpy.show_screen("map_screen")
-
-        renpy.run(Return())
+        return True
 
     def shop (denizen):
         renpy.jump("shopMenu")

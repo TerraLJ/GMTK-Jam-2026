@@ -89,7 +89,7 @@ init python:
 
     # Building Map Matrices; j is x, i is y
     house_map = [[MapTile() for j in range(12)] for i in range(11)]
-    town_map = [[MapTile() for j in range(33)] for i in range(26)]
+    town_map = [[MapTile() for j in range(51)] for i in range(34)]
 
     # Initializing Rooms with Camera matching Player (9, 5)
     gray_house = LandMap(house_map, "gray house indoors.png", 9, 5)
@@ -103,55 +103,82 @@ init python:
     wall = MapOccupant (6, 10)
     gray_house.occupy (6, 10, wall)
 
-    def self_op(denizen): pass
-    def no_op(denizen): pass
-    def disappear(denizen): room.unoccupy (denizen.x, denizen.y)
-    def shop (denizen): renpy.jump("shopMenu")
-    def library (denizen): pass
-    def blacksmith (denizen): pass
+    inside_house_door = MapDenizen (4, 10, "house door.png", 49, 49, leave_room)
+    gray_house.occupy (4, 10, inside_house_door)
 
-    lancer = MapDenizen (3, 10, "lancer.png", 72, 70, shop)
-    gray_house.occupy (3, 10, lancer)
+    #stupid wall implementation
+    i = 0
+    while (i < 25):
+        town.occupy (13+i, 7, wall)
+        town.occupy (13+i, 26, wall)
+        i += 1
 
-    def leave_room (denizen):
-        global room_name
-        global room
-        teleport_x = 0
-        teleport_y = 0
+    j = 0
+    while (j < 18):
+        town.occupy (13, 8+j, wall)
+        town.occupy (37, 8+j, wall)
+        j += 1
 
-        store.moving_up = False
-        store.moving_down = False
-        store.moving_left = False
-        store.moving_right = False
-        store.move = ""
+    k = 0
+    while (k < 7):
+        l = 0
+        while (l < 3):
+            town.occupy (29 + k, 13 + l, wall)
+            l+= 1
+        k += 1
 
-        if room is not None:
-            room.unoccupy(store.gray_sprite.x, store.gray_sprite.y)
+    m = 0
+    while (m < 7):
+        n = 0
+        while (n < 3):
+            town.occupy (18 + m, 14 + n, wall)
+            n+= 1
+        m += 1
 
-        if (room_name == "gray_house"):
-            room_name = "town"
-            teleport_x = 14
-            teleport_y = 12
-        else:
-            room_name = "gray_house"
-            teleport_x = 9
-            teleport_y = 5
+    #hand coded wall blocks. pray for me
+    town.occupy (14, 10, wall)
+    town.occupy (14, 15, wall)
+    town.occupy (14, 16, wall)
 
-        room = getattr(store, room_name)
-        
-        # FIX: Relocate the sprite position and map arrays correctly
-        store.gray_sprite.x = teleport_x
-        store.gray_sprite.y = teleport_y
-        room.occupy(teleport_x, teleport_y, store.gray_sprite)
-        
-        # FIX: Align the room camera onto the fresh spawn coordinate location
-        room.center_x = teleport_x
-        room.center_y = teleport_y
+    town.occupy (14, 21, wall)
+    town.occupy (15, 22, wall)
+    town.occupy (16, 23, wall)
+    town.occupy (17, 24, wall)
+    town.occupy (18, 24, wall)
+    town.occupy (19, 25, wall)
+    town.occupy (20, 25, wall)
+    town.occupy (21, 26, wall)
+    town.occupy (22, 26, wall)
+    town.occupy (23, 27, wall)
+    town.occupy (24, 27, wall)
 
-        return True
+    #so you can kinda step inside the cave and triggers have room
+    town.unoccupy (13, 12)
+    town.unoccupy (13, 13)
+    town.unoccupy (30, 15)
+    town.unoccupy (24, 7)
+    town.unoccupy (34, 7)
+    town.unoccupy (23, 16)
+    town.unoccupy (27, 26)
 
-    house_door = MapDenizen (4, 10, "house door.png", 72, 70, leave_room)
-    gray_house.occupy (4, 10, house_door)
+    cave = MapDenizen (23, 16, "house door.png", 49, 49, leave_room)
+    town.occupy (12, 12, cave)
+    town.occupy (12, 13, cave)
+
+    outside_house_door = MapDenizen (23, 16, "house door.png", 49, 49, leave_room)
+    town.occupy (23, 16, inside_house_door)
+
+    lancer = MapDenizen (30, 15, "lancer.png", 72, 70, shop)
+    town.occupy (30, 15, lancer)
+
+    blacksmith = MapDenizen (24, 7, "lancer.png", 72, 70, shop)
+    town.occupy (24, 7, blacksmith)
+
+    library = MapDenizen (34, 7, "lancer.png", 72, 70, shop)
+    town.occupy (34, 7, library)
+
+    bridge = MapDenizen (27, 26, "lancer.png", 72, 70, shop)
+    town.occupy (27, 26, bridge)
 
     # FIX: Interaction tracking mapping engine logic
     def grayInteracts():

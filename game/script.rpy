@@ -5,6 +5,7 @@
 
 define p = Character("Pink", color = "#ff7afb")
 define g = Character("Gray", color = "#3d383d")
+define config.rollback_enabled = False
 
 default commentFlag = False
 default shopFlag = False
@@ -22,9 +23,12 @@ label start:
     jump beginning
 
 label rpg_section:
-    # disable rollback because i kept accidentally rolling back. allow save scumming though
-    $ renpy.block_rollback()
+    init python:
+        config.keymap['button_select'].remove('K_RETURN')
+
     $ room = getattr(store, room_name)
     while rpg:
         call screen map_screen
+
+    $ config.keymap['button_select'].append('K_RETURN')
     return
