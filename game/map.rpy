@@ -50,7 +50,7 @@ init python:
             new_row.append(MapTile())
         house_map.append(new_row)
 
-    gray_house = LandMap(house_map, "gray house indoors.png", 4, 5)
+    gray_house = LandMap(house_map, "gray house indoors.png", 0, 0)
 
     #TODO: change this to fit the sprite dimensions. also idk why 5, 5
 

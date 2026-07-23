@@ -10,8 +10,8 @@ screen map_screen (aMap):
 
     add "#000"
 
-    $offset_x = 960 - (tile_size * aMap.center_x) + tile_size/2
-    $offset_y = 540 - (tile_size * aMap.center_y) + tile_size/2
+    $offset_x = 960 - (tile_size * aMap.center_x) + (tile_size//2)
+    $offset_y = 540 - (tile_size * aMap.center_y) + (tile_size//2)
     add aMap.img:
         pos(offset_x, offset_y)
 

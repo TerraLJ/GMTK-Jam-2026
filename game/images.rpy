@@ -5,7 +5,7 @@ image pink happy = "pink_healthy_happy.png"
 default g_dir = "front"
 
 #how offset we need to be for the sprite to be in the right space
-define g_offset = 0
+define g_offset = -10
 
 image gray = "gray [g_dir]"
 
