@@ -38,13 +38,6 @@ init python:
         lovedOneProgression = 0
         return
 
-    def checkEndOfDay():
-        # checks if the player has run out of actions for the day
-        if day == 1:
-            return actionsDone >= 5
-        elif day == 2:
-            return actionsDone >= 3
-
     def newDay():
         # sets up variables for the next day
         day += 1
