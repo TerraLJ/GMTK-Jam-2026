@@ -22,6 +22,9 @@ default extraAction = False
 # ^ Split extraAction into two variables for Day 2 and 3? So Pink/Grey
 # can have extra comments on if you're taking care of yourself?
 
+# Progression of interactions with Pink/Gray
+default lovedOneProgression = 0
+
 init python:
     def resetVariables():
         # Function to easily reset variables
@@ -32,6 +35,7 @@ init python:
         day = 1
         actionsLeft = 5
         extraAction = False
+        lovedOneProgression = 0
         return
 
     def checkEndOfDay():
