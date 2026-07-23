@@ -4,28 +4,52 @@
 default player = 0
 default curseTransferCompleted = False
 
-# Variables for when playing as Grey
-default g_swordLevel = 0
-default g_magicLevel = 0
+# Variables that are shared across both characters because they reset
+default swordLevel = 0
+default magicLevel = 0
+default curseTransferObtained = False
+
+# Discovery flags are not reset across runs
 default g_curseTransferDiscovered = False
 default g_curseBreakDiscovered = False
-default g_curseTransferObtained = False
-
-# Variables for when playing as Pink
-default p_swordLevel = 0
-default p_magicLevel = 0
 default p_curseTransferDiscovered = False
 default p_curseBreakDiscovered = False
-default p_curseTransferObtained = False
 
-# Function to easily reset variables
+# Day and action related variables
+default day = 1
+default actionsLeft = 5
+default extraAction = False
+# ^ Split extraAction into two variables for Day 2 and 3? So Pink/Grey
+# can have extra comments on if you're taking care of yourself?
+
 init python:
     def resetVariables():
-        g_swordLevel = 0
-        g_magicLevel = 0
-        g_curseTransferObtained = False
-        p_swordLevel = 0
-        p_magicLevel = 0
-        p_curseTransferObtained = False
+        # Function to easily reset variables
+        swordLevel = 0
+        magicLevel = 0
+        curseTransferObtained = False
         # discoveries persist between runs
+        day = 1
+        actionsLeft = 5
+        extraAction = False
         return
+
+    def checkEndOfDay():
+        # checks if the player has run out of actions for the day
+        if day == 1:
+            return actionsDone >= 5
+        elif day == 2:
+            return actionsDone >= 3
+
+    def newDay():
+        # sets up variables for the next day
+        day += 1
+        if day == 2:
+            actionsLeft = 3
+        elif day == 3:
+            actionsLeft = 1
+        else:
+            actionsLeft = 0
+        if extraAction:
+            actionsDone += 1
+        extraAction = False
