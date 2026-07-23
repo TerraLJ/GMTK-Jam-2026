@@ -3,8 +3,11 @@
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
 
-define p = Character("Pink")
-
+define p = Character("Pink", color = "#ff7afb")
+define g = Character("Gray", color = "#3d383d")
+default shopFlag = False
+default rpg = True
+default room_name = "gray_house"
 
 # The game starts here.
 
@@ -15,28 +18,15 @@ label start:
     # images directory to show it.
 
     #scene bg room
-    $commentFlag = False
-    $rpg = True
-    $room = gray_house
-
-    window auto
 
     #put the before-rpg stuff here
     "."
 
     #find a way to disable and enable it
     if (rpg == True):
-        show screen map_screen(room)
-
-        # Freeze progression until commentFlag is True
-        while not commentFlag:
-            $ renpy.pause(0.1, hard=True)
-
+        $ room = getattr(store, room_name)
+        call screen map_screen(room)
 
     #show pink happy
-
-    #put vn stuff here?
-    else:
-        "."
 
     return

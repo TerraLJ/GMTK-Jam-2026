@@ -9,6 +9,12 @@ define moving_down = False
 define moving_left = False
 define moving_right = False
 
+#define as the starting locations
+define house_x = 9
+define house_y = 5
+define town_x = 7
+define town_y = 5
+
 init python:
 
     class LandMap:
@@ -114,16 +120,17 @@ init python:
 
     #TODO: change this to fit the sprite dimensions. also idk why 5, 5
 
-    gray_sprite = MapDenizen (5, 9, "gray", 15, 32, self_op)
-    gray_house.occupy (5, 9, gray_sprite)
+    gray_sprite = MapDenizen (house_x, house_y, "gray", 15, 32, self_op)
+    gray_house.occupy (house_x, house_y, gray_sprite)
 
     #TODO: make the walls fit the actual map. good luck. maybe use a for loop
     wall = MapOccupant (5, 10)
     gray_house.occupy (5, 10, wall)
 
     #TODO: interactables. lancer is my default
-    lancer = MapDenizen (3, 10, "lancer.png", 72, 70, disappear)
+    lancer = MapDenizen (3, 10, "lancer.png", 72, 70, shop)
     gray_house.occupy (3, 10, lancer)
 
-    #TODO: Town layout
+    #TODO: Town layout. and figure out how to move gray_sprite to town
     town = LandMap(town_map, "town base.png", 4, 9)
+    town.occupy (town_x, town_y, gray_sprite)

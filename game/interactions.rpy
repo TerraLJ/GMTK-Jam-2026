@@ -10,6 +10,23 @@
 
     #i'm not interacting with you
     def disappear(denizen):
-        #TODO: keep track of the right room
-        #TODO: stop hardcoding everything to this one fucking room
-        gray_house.unoccupy (denizen.x, denizen.y)
+        room.unoccupy (denizen.x, denizen.y)
+
+    def leave_room (denizen):
+        if (room == gray_house):
+            room = town
+
+        else:
+            room = gray_house
+
+    def shop (denizen):
+        renpy.jump("shopMenu")
+
+    def library (denizen):
+        pass
+
+    def blacksmith (denizen):
+        pass
+
+    def leave_rpg (denizen):
+        rpg = false
