@@ -15,6 +15,7 @@ label start:
     # images directory to show it.
 
     #scene bg room
+    $commentFlag = False
 
     show screen map_screen(gray_house)
 
@@ -27,6 +28,7 @@ label start:
     # These display lines of dialogue.
 
     "."
+    window hide
 
     $gray_house.moveDenizen (gray_sprite.x, gray_sprite.y, 0, -1)
 

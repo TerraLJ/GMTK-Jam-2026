@@ -55,9 +55,8 @@ init python:
         def triggerInteraction (self, x, y):
             if (x < 0 or x >= len (self.map[0]) or y < 0 or y >= len (self.map)):
                 return
-            if (self.isEmpty (x, y)):
+            if (self.isEmpty (x, y)) or not isinstance(self.map[y][x].occupant, MapDenizen):
                 return
-
             self.map[y][x].occupant.interact()
 
     class MapTile:
