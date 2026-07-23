@@ -19,9 +19,16 @@ screen map_screen (aMap):
         $row = aMap.map [i]
         for j in range(len(row)):
             $tile = row[j]
-            if not tile.occupant is None:
+            if not tile.occupant is None and isinstance(tile.occupant, MapDenizen):
                 $offx, offy = tile.occupant.getOffset()
                 $tile_lc_x = tile_size * j + offset_x
                 $tile_lc_y = tile_size * i + offset_y
                 add tile.occupant.img:
                     pos (tile_lc_x + offx, tile_lc_y + offy)
+
+    key "K_UP" action Function (gray_house.moveDenizen, gray_sprite.x, gray_sprite.y, 0, -1), SetVariable ("g_dir", "back")
+    key "K_DOWN" action Function (gray_house.moveDenizen, gray_sprite.x, gray_sprite.y, 0, 1), SetVariable ("g_dir", "front")
+    key "K_LEFT" action Function (gray_house.moveDenizen, gray_sprite.x, gray_sprite.y, -1, 0), SetVariable ("g_dir", "left")
+    key "K_RIGHT" action Function (gray_house.moveDenizen, gray_sprite.x, gray_sprite.y, 1, 0), SetVariable ("g_dir", "right")
+
+    key "K_RETURN" action Function (grayInteracts)

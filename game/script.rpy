@@ -28,6 +28,10 @@ label start:
 
     "."
 
+    $gray_house.moveDenizen (gray_sprite.x, gray_sprite.y, 0, -1)
+
+    "."
+
     #p "You've created a new Ren'Py game."
 
     #p "Once you add a story, pictures, and music, you can release it to the world!"
