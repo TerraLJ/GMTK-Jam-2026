@@ -43,11 +43,11 @@ init python:
         global actionsLeft
         global breakfast
         global lovedOneProgression
-        global numCrystals = 0
-        global numShards = 0
-        global hasShopkeepSwordItem = False
-        global hasSweets = False
-        global hasPinkBook = False
+        global numCrystals
+        global numShards
+        global hasShopkeepSwordItem
+        global hasSweets
+        global hasPinkBook
 
         swordLevel = 0
         magicLevel = 0
