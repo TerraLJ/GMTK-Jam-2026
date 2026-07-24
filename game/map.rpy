@@ -172,6 +172,10 @@ init python:
     town.occupy (23+buffer, 27+buffer, wall)
     town.occupy (24+buffer, 27+buffer, wall)
 
+    #so you can kinda step inside the cave and triggers have room
+    town.unoccupy (13+buffer, 12+buffer)
+    town.unoccupy (13+buffer, 13+buffer)
+
     cave = MapDenizen (12+buffer, 12+buffer, "house door.png", 49, 49, cave)
     town.occupy (12+buffer, 12+buffer, cave)
     town.occupy (12+buffer, 13+buffer, cave)
