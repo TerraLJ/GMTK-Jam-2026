@@ -7,31 +7,21 @@
 #ypos = center of screen - center_y
 
 transform plane_3d:
-    # Enable perspective projection
     perspective True
-    # Anchor the matrix to the center of your game window (assuming 1920x1080)
     matrixanchor (960, 540)
-    # Tilt the grid back 25 degrees and move the camera view to simulate height
     matrixtransform RotateMatrix(15, 0, 0) * OffsetMatrix(0, 50, -200)
 
 screen map_screen ():
     add "#000"
 
-screen map_screen ():
-    add "#000"
-
-    # 1. Fetch exact grid row/col counts safely
     $ map_cols = len(room.map[0]) if len(room.map) > 0 else 1
     $ map_rows = len(room.map)
 
-    # 2. Calculate half screen metrics in real pixels
     $ screen_half_w = 1920.0 / 2.0
     $ screen_half_y = 1080.0 / 2.0
 
-    # 3. Handle Horizontal Camera Alignment & Tracking Point
     if (map_cols * tile_size) <= 1920:
         $ offset_x = screen_half_w - ((map_cols * tile_size) / 2.0)
-        # For small rooms, the camera tracking center is just the middle of the room
         $ cam_x = map_cols / 2.0
     else:
         $ min_camera_x = screen_half_w / tile_size
@@ -39,7 +29,6 @@ screen map_screen ():
         $ cam_x = max(min_camera_x, min(room.center_x + 0.5, max_camera_x))
         $ offset_x = screen_half_w - (tile_size * cam_x)
 
-    # 4. Handle Vertical Camera Alignment & Tracking Point
     if (map_rows * tile_size) <= 1080:
         $ offset_y = screen_half_y - ((map_rows * tile_size) / 2.0)
         $ cam_y = map_rows / 2.0
@@ -49,26 +38,23 @@ screen map_screen ():
         $ cam_y = max(min_camera_y, min(room.center_y + 0.5, max_camera_y))
         $ offset_y = screen_half_y - (tile_size * cam_y)
 
-    # 5. Render World Viewport
     fixed:
         at plane_3d
 
-        # Draw background map
-        add room.img:
+        fixed:
             pos (int(offset_x), int(offset_y))
+            add room.img
 
-        # Extract all visual objects currently present on the active map
-        $ active_denizens = []
-        for row in room.map:
-            for tile in row:
-                if tile.occupant is not None:
-                    if isinstance(tile.occupant, (MapDenizen, MapBuilding)):
-                        $ active_denizens.append(tile.occupant)
+        python:
+            active_denizens = []
+            for row in room.map:
+                for tile in row:
+                    if tile.occupant is not None:
+                        if hasattr(tile.occupant, "sort_y") and hasattr(tile.occupant, "img"):
+                            active_denizens.append(tile.occupant)
 
-        # SORTING FIX: Sort everything together using the new visual baseline attribute
-        $ active_denizens.sort(key=lambda d: d.sort_y)
+            active_denizens.sort(key=lambda d: d.sort_y)
 
-        # Render everything relative to the exact same camera baseline
         for denizen in active_denizens:
             $ offx, offy = denizen.getOffset()
             
@@ -84,13 +70,25 @@ screen map_screen ():
 
             fixed:
                 pos (int(sprite_render_x + offx), int(sprite_render_y + offy))
+                
                 at transform:
                     matrixanchor (tile_size // 2, tile_size)
-                    matrixtransform RotateMatrix(-25, 0, 0) 
+                    
+                    matrixtransform RotateMatrix(-15, 0, 0)
                 
                 add denizen.img
 
-    # --- ENGINE CONTROLS (Kept flat/untransformed) ---
+    vbox:
+        xalign 0.05
+        yalign 0.05
+        spacing 10
+
+        text "Day [day]":
+            text_align 0.0
+
+        text "[actionsLeft] actions left":
+            text_align 0.0
+                
     if (rpg == True and commentFlag == False):
         key "keydown_K_UP" action SetVariable("moving_up", True)
         key "keydown_K_DOWN" action SetVariable("moving_down", True)

@@ -11,66 +11,19 @@ default moving_right = False
 define buffer = 5
 
 init python:
-
-    class LandMap:
-        def __init__(self, map_grid, img, start_x, start_y):
-            self.map = map_grid
-            self.img = img
-            self.center_x = start_x
-            self.center_y = start_y
-
-        def isEmpty (self, x, y):
-            return self.map[y][x].occupant is None
-        
-        def occupy (self, x, y, denizen):
-            self.map[y][x].occupant = denizen
-
-        def unoccupy (self, x, y):
-            self.map[y][x].occupant = None
-        
-        def movePlayerDenizen(self, offx, offy):
-            x = store.gray_sprite.x
-            y = store.gray_sprite.y
-
-            if self.isEmpty(x, y):
-                return
-            # Boundary checks
-            if x + offx >= len(self.map[0]) or x + offx < 0:
-                return
-            if y + offy >= len(self.map) or y + offy < 0:
-                return
-            if not self.isEmpty(x + offx, y + offy):
-                return
-
-            # Shift occupant grid values
-            denizen = self.map[y][x].occupant
-            self.map[y][x].occupant = None
-            self.map[y+offy][x+offx].occupant = denizen
-            
-            store.gray_sprite.x += offx
-            store.gray_sprite.y += offy
-
-            # Update engine camera mapping center vectors
-            self.center_x = store.gray_sprite.x
-            self.center_y = store.gray_sprite.y
-
-            renpy.restart_interaction()
-
-        def triggerInteraction (self, x, y):
-            if (x < 0 or x >= len(self.map[0]) or y < 0 or y >= len(self.map)):
-                return
-            if (self.isEmpty (x, y)) or not isinstance(self.map[y][x].occupant, MapDenizen):
-                return
-            self.map[y][x].occupant.interact()
-
     class MapTile:
         def __init__(self, occupant=None):
             self.occupant = occupant
 
-    class MapOccupant:
+    class MapOccupant(object):
         def __init__ (self, x, y):
             self.x = x
             self.y = y
+            self._sort_y = y 
+
+        @property
+        def sort_y(self):
+            return self._sort_y
 
     class MapDenizen (MapOccupant):
         def __init__(self, x, y, img, width, height, interaction):
@@ -96,9 +49,8 @@ init python:
             self.img = img
             self.width = width
             self.height = height
-            # NEW: Keep self.y matched to the placement tile, but create a visual baseline
-            self.sort_y = y + (visual_h_tiles - 1)
             self.interaction = interaction
+            self._sort_y = y
 
         def getOffset(self):
             return (tile_size - self.width, tile_size - self.height)
@@ -107,19 +59,63 @@ init python:
             if self.interaction:
                 self.interaction(self)
 
-    # Building Map Matrices; j is x, i is y
+    class LandMap:
+        def __init__(self, map_grid, img, start_x, start_y):
+            self.map = map_grid
+            self.img = img
+            self.center_x = start_x
+            self.center_y = start_y
+
+        def isEmpty (self, x, y):
+            return self.map[y][x].occupant is None
+        
+        def occupy (self, x, y, denizen):
+            self.map[y][x].occupant = denizen
+
+        def unoccupy (self, x, y):
+            self.map[y][x].occupant = None
+        
+        def movePlayerDenizen(self, offx, offy):
+            x = store.gray_sprite.x
+            y = store.gray_sprite.y
+
+            if self.isEmpty(x, y):
+                return
+            if x + offx >= len(self.map[0]) or x + offx < 0:
+                return
+            if y + offy >= len(self.map) or y + offy < 0:
+                return
+            if not self.isEmpty(x + offx, y + offy):
+                return
+
+            denizen = self.map[y][x].occupant
+            self.map[y][x].occupant = None
+            self.map[y+offy][x+offx].occupant = denizen
+            
+            store.gray_sprite.x += offx
+            store.gray_sprite.y += offy
+
+            self.center_x = store.gray_sprite.x
+            self.center_y = store.gray_sprite.y
+
+            renpy.restart_interaction()
+
+        def triggerInteraction (self, x, y):
+            if (x < 0 or x >= len(self.map[0]) or y < 0 or y >= len(self.map)):
+                return
+            if (self.isEmpty (x, y)) or not isinstance(self.map[y][x].occupant, MapDenizen):
+                return
+            self.map[y][x].occupant.interact()
+    
     house_map = [[MapTile() for j in range(12)] for i in range(11)]
     town_map = [[MapTile() for j in range(51)] for i in range(34)]
 
-    # Initializing Rooms with Camera matching Player (9, 5)
     gray_house = LandMap(house_map, "gray house indoors.png", 9, 5)
     town = LandMap(town_map, "town base.png", 13+buffer, 14+buffer)
 
-    # Creating Player Instance
-    store.gray_sprite = MapDenizen (9, 5, "gray", 72, 72, lambda d: None)
+    store.gray_sprite = MapDenizen (9, 5, "gray", 72, 144, lambda d: None)
     gray_house.occupy (9, 5, store.gray_sprite)
 
-    # Environment Blocks
     wall = MapOccupant (6, 10)
     gray_house.occupy (6, 10, wall)
 
@@ -135,8 +131,8 @@ init python:
 
     j = 0
     while (j < 18):
-        town.occupy (13+buffer, 8+j+buffer, wall)
-        town.occupy (37+buffer, 8+j+buffer, wall)
+        town.occupy (13+buffer, 9+j+buffer, wall)
+        town.occupy (37+buffer, 9+j+buffer, wall)
         j += 1
 
     k = 0
@@ -156,9 +152,9 @@ init python:
         m += 1
 
     #hand coded wall blocks. pray for me
-    town.occupy (14+buffer, 10+buffer, wall)
-    town.occupy (14+buffer, 15+buffer, wall)
+    town.occupy (14+buffer, 11+buffer, wall)
     town.occupy (14+buffer, 16+buffer, wall)
+    town.occupy (14+buffer, 17+buffer, wall)
 
     town.occupy (14+buffer, 21+buffer, wall)
     town.occupy (15+buffer, 22+buffer, wall)
@@ -180,17 +176,15 @@ init python:
     town.occupy (12+buffer, 12+buffer, cave)
     town.occupy (12+buffer, 13+buffer, cave)
 
-    cave_front = MapBuilding(14+buffer, 17+buffer, "rock front.png", 432, 432, visual_h_tiles=6, interaction=no_op)
+    cave_front = MapBuilding(14+buffer, 17+buffer, "rock front.png", 432, 504, visual_h_tiles=7, interaction=no_op)
     town.occupy (14+buffer, 17+buffer, cave_front)
 
     house = MapBuilding(24+buffer, 16+buffer, "house outside.png", 216, 216, visual_h_tiles=3, interaction=no_op)
     town.occupy(24+buffer, 16+buffer, house)
 
-    # Change building_1 to look EXACTLY like this:
     building_1 = MapBuilding(19+buffer, 7+buffer, "building 1.png", 288, 216, visual_h_tiles=3, interaction=no_op)
     town.occupy(19+buffer, 7+buffer, building_1)
 
-    # Change building_2 to look EXACTLY like this:
     building_2 = MapBuilding(20+buffer, 16+buffer, "building 2.png", 216, 216, visual_h_tiles=3, interaction=no_op)
     town.occupy(20+buffer, 16+buffer, building_2)
 
@@ -220,6 +214,9 @@ init python:
 
     outside_house_door = MapDenizen (23+buffer, 16+buffer, "house door.png", 49, 49, leave_room)
     town.occupy (23+buffer, 16+buffer, inside_house_door)
+
+    npc_1 = MapDenizen (15+buffer, 11+buffer, "npc 1.png", 72, 70, npc_chat)
+    town.occupy (15+buffer, 11+buffer, npc_1)
 
     # FIX: Interaction tracking mapping engine logic
     def grayInteracts():
