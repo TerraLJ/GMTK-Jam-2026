@@ -92,12 +92,13 @@ label p_sweetsQuestStart:
     p "wa"
     g "wawa"
     $ lovedOneProgression += 1
+    $ sweetsQuestProgression = 1
     # back to rpg mode
     scene black with fastFade
     call screen map_screen with fastFade
 
 label p_sweetsQuestDeliver:
-    if not hasSweets:
+    if sweetsQuestProgression < 3:
         # dialogue chain reminding you about the quest
         p "wawa my sweets wawawa"
     else:
@@ -107,6 +108,7 @@ label p_sweetsQuestDeliver:
         python:
             lovedOneProgression += 1
             numCrystals -= 1
+            sweetsQuestProgression = 4
     # back to rpg mode
     scene black with fastFade
     call screen map_screen with fastFade

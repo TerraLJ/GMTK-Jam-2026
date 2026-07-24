@@ -14,9 +14,15 @@ default timesMagicPracticed = 0
 default numCrystals = 0
 default numShards = 0
 default hasShopkeepSwordItem = False
-default hasSweets = False
 default hasPinkBook = False
 default curseTransferObtained = False
+
+# 0: Not started. 1: Started. 2: Shopkeep spoken to, sweets not obtained.
+# 3: Sweets obtained. 4: Sweets delivered.
+default sweetsQuestProgression = 0
+
+#
+default wishBladeProgression = 0
 
 # Discovery flags are not reset across runs
 default g_curseTransferDiscovered = False
@@ -46,8 +52,8 @@ init python:
         global numCrystals
         global numShards
         global hasShopkeepSwordItem
-        global hasSweets
         global hasPinkBook
+        global sweetsQuestProgression
 
         swordLevel = 0
         magicLevel = 0
@@ -62,8 +68,9 @@ init python:
         numCrystals = 0
         numShards = 0
         hasShopkeepSwordItem = False
-        hasSweets = False
         hasPinkBook = False
+
+        sweetsQuestProgression = 0
         return
 
     def updateMagic():
