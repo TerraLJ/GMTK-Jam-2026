@@ -1,7 +1,6 @@
 label library:
     # shared start for entering library
-
-    # TODO: set background image
+    scene library inside with fastFade
 
     if curseTransferObtained and magicLevel >= 3:
         player "(I have everything I need now. I think I can cast the spell to transfer the curse...)"
@@ -47,7 +46,8 @@ label library_g:
                     jump endOfDay
             
             "Leave the library.":
-                call screen map_screen
+                scene black with fastFade
+                call screen map_screen with fastFade
 
     player "(I'm still not skilled enough to break the curse... Should I practice my magic?)"
     menu:
@@ -68,7 +68,8 @@ label library_g:
                 jump endOfDay
         
         "Leave the library.":
-            call screen map_screen
+            scene black with fastFade
+            call screen map_screen with fastFade
 
 label library_p:
     # library scenes when playing as Pink

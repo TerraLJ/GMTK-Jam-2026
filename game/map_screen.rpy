@@ -6,25 +6,94 @@
 #center of the screen 1080/2 = 540
 #ypos = center of screen - center_y
 
+transform plane_3d:
+    # Enable perspective projection
+    perspective True
+    # Anchor the matrix to the center of your game window (assuming 1920x1080)
+    matrixanchor (960, 540)
+    # Tilt the grid back 25 degrees and move the camera view to simulate height
+    matrixtransform RotateMatrix(15, 0, 0) * OffsetMatrix(0, 50, -200)
+
 screen map_screen ():
     add "#000"
 
-    $ offset_x = 960 - (tile_size * room.center_x) + (tile_size//2)
-    $ offset_y = 540 - (tile_size * room.center_y) + (tile_size//2)
-    add room.img:
-        pos (offset_x, offset_y)
+screen map_screen ():
+    add "#000"
 
-    for i in range(len(room.map)):
-        $ row = room.map[i]
-        for j in range(len(row)):
-            $ tile = row[j]
-            if not tile.occupant is None and isinstance(tile.occupant, MapDenizen):
-                $ offx, offy = tile.occupant.getOffset()
-                $ tile_lc_x = tile_size * j + offset_x
-                $ tile_lc_y = tile_size * i + offset_y
-                add tile.occupant.img:
-                    pos (tile_lc_x + offx, tile_lc_y + offy)
+    # 1. Fetch exact grid row/col counts safely
+    $ map_cols = len(room.map[0]) if len(room.map) > 0 else 1
+    $ map_rows = len(room.map)
 
+    # 2. Calculate half screen metrics in real pixels
+    $ screen_half_w = 1920.0 / 2.0
+    $ screen_half_y = 1080.0 / 2.0
+
+    # 3. Handle Horizontal Camera Alignment & Tracking Point
+    if (map_cols * tile_size) <= 1920:
+        $ offset_x = screen_half_w - ((map_cols * tile_size) / 2.0)
+        # For small rooms, the camera tracking center is just the middle of the room
+        $ cam_x = map_cols / 2.0
+    else:
+        $ min_camera_x = screen_half_w / tile_size
+        $ max_camera_x = map_cols - (screen_half_w / tile_size)
+        $ cam_x = max(min_camera_x, min(room.center_x + 0.5, max_camera_x))
+        $ offset_x = screen_half_w - (tile_size * cam_x)
+
+    # 4. Handle Vertical Camera Alignment & Tracking Point
+    if (map_rows * tile_size) <= 1080:
+        $ offset_y = screen_half_y - ((map_rows * tile_size) / 2.0)
+        $ cam_y = map_rows / 2.0
+    else:
+        $ min_camera_y = screen_half_y / tile_size
+        $ max_camera_y = map_rows - (screen_half_y / tile_size)
+        $ cam_y = max(min_camera_y, min(room.center_y + 0.5, max_camera_y))
+        $ offset_y = screen_half_y - (tile_size * cam_y)
+
+    # 5. Render World Viewport
+    fixed:
+        at plane_3d
+
+        # Draw background map
+        add room.img:
+            pos (int(offset_x), int(offset_y))
+
+        # Extract all denizens currently present on the active map
+        $ active_denizens = []
+        for row in room.map:
+            for tile in row:
+                if tile.occupant is not None and isinstance(tile.occupant, MapDenizen):
+                    $ active_denizens.append(tile.occupant)
+
+        # Sort denizens by their Y-coordinate for proper depth sorting (Y-Sorting)
+        $ active_denizens.sort(key=lambda d: d.y)
+
+        # Sort denizens by their Y-coordinate for proper depth sorting (Y-Sorting)
+        $ active_denizens.sort(key=lambda d: d.y)
+
+        # Render denizens relative to the exact same camera baseline
+        for denizen in active_denizens:
+            $ offx, offy = denizen.getOffset()
+            
+            # Use the tracking points (cam_x/cam_y) so sprites move in lockstep with the background
+            if (map_cols * tile_size) <= 1920:
+                $ sprite_render_x = offset_x + (tile_size * denizen.x)
+            else:
+                $ sprite_render_x = screen_half_w + (tile_size * (denizen.x - cam_x))
+                
+            if (map_rows * tile_size) <= 1080:
+                $ sprite_render_y = offset_y + (tile_size * denizen.y)
+            else:
+                $ sprite_render_y = screen_half_y + (tile_size * (denizen.y - cam_y))
+
+            fixed:
+                pos (int(sprite_render_x + offx), int(sprite_render_y + offy))
+                at transform:
+                    matrixanchor (tile_size // 2, tile_size)
+                    matrixtransform RotateMatrix(-25, 0, 0) 
+                
+                add denizen.img
+
+    # --- ENGINE CONTROLS (Kept flat/untransformed) ---
     if (rpg == True and commentFlag == False):
         key "keydown_K_UP" action SetVariable("moving_up", True)
         key "keydown_K_DOWN" action SetVariable("moving_down", True)
