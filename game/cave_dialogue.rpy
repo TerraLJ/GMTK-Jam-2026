@@ -7,7 +7,8 @@ label caveDialog:
         "> Explore the cave? This will take 1 action."
 
         "Collect crystals.":
-            player "."
+            player "(The floor and walls of this cave are filled with beautiful, shining crystals.)"
+            player "(While taking care to avoid monsters, I spent time collecting some that were loose enough to pick up.)"
             "> You obtained Gleaming Crystals x2."
             $ numCrystals += 2
             $ actionsLeft -= 1
@@ -15,15 +16,23 @@ label caveDialog:
                 jump endOfDay
         
         "Hunt for monsters." if swordLevel > 0:
-            player "."
+            player "(The Blacksmith's sword is sharp, and far better at fighting off monsters than my old wooden one.)"
+            player "(I'm not the most experienced fighter, but I still managed to take down a couple of those beasts and picked up their remains.)"
+            player "(I feel... Stronger now, too.)"
             "> You obtained Monster Shards x1."
             $ numShards += 1
             $ actionsLeft -= 1
             if actionsLeft <= 0:
                 jump endOfDay
 
+        "Attempt the trial." if swordLevel >= 2:
+            jump trialEnding
+
         "Leave the cave.":
     scene black with fastFade
     call screen map_screen with fastFade
 
     # Sword Level 0 and 0 crystals means player has never been to the cave (in this run)
+
+label trialEnding:
+    # TODO
