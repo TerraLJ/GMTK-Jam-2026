@@ -20,6 +20,8 @@ label library:
                 #     jump library_p
                 # For now, just always jump to library_g
                 jump library_g
+    # technically not a required line but ummm. I feel better with it there
+    jump library_g
 
 label library_g:
     # library scenes when playing as Grey
