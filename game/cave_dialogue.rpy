@@ -41,4 +41,12 @@ label caveDialog:
 
 label trialEnding:
     # TODO
+    player "."
+    menu:
+        # At this point the player has 0 actions
+        # It's a menu but only one option is actually available
+        "> This will take 1 action."
+
+        "Press onward":
+            "woahh cool dragon woahhhh"
     jump gameOver
