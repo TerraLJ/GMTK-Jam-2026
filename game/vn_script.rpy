@@ -41,3 +41,16 @@ label startOfDay3:
 
 label outOfTime:
     # TODO
+
+label gameOver:
+    menu:
+        "> You have failed to break the curse."
+
+        "Try again.":
+            "> And so it begins again."
+            $ resetVariables()
+            jump beginning
+        
+        "Give up. (This will take 1 action.)":
+            "> You do not have any actions left."
+            jump gameOver
