@@ -22,19 +22,49 @@ label pink_interaction:
 
 
 label p_breakfast1:
-    p "something something eat some breakfast"
+    # TODO: IMPLEMENT PORTRAITS AND EXPRESSION CHANGES
+    p "Oh, I..."
+    p "I really thought you were just going to head out immediately again."
+    p "But this is good! We could have some breakfast together before you go!"
+    p "..."
+    p "Please..?"
     menu:
         "> Eat breakfast with [p]? This will take 1 action."
 
-        "Sure.":
-            g "Sure,"
-            #TODO continue
-            g "()"
+        "Eat breakfast.":
+            g "...I suppose it's been some time since I last had a meal..."
+            p "What?!"
+            p "When's the last time you ate?"
+            g "..."
+            g "You know I've been busy."
+            p "So busy you can't eat??"
+            p "Don't be like that, [g]! You're the one who always told me we need to rest and eat to be able to do other things!" 
+            p "I know you're worried about the curse, but it's only going to get harder to do things if you keep neglecting yourself!"
+            g "But-"
+            p "Nuh-uh! Not hearing it right now!"
+            p "Let's get some food in the both of us, okay?"
+            # fade to black, sound effects of dishes clinking and such? breakfast getting set up
+            g "(...This is nice.)"
+            g "(I've hardly any time recently for such... frivolities. But just the same...)"
+            g "(I can't recall the last time I was able to share a meal with her, since the curse.)"
+            g "(...)"
+            g "(She looks so happy.)"
+            p "..!"
+            p "What's up? You're looking at me all serious."
+            p "..."
+            p "...If it's about having to spend extra time doing the dishes, I'll do them, don't worry..!"
+            p "Go ahead and go out into town and do... Do your research stuff!"
+            p "..."
+            p "But, um... thanks. For having breakfast with me."
+            p "I really missed it."
             "> You have gained 1 action for the day."
 
         "I don't have time.":
-            g "Sorry, but I don't have time for that today."
-            # sad pink noises
+            g "I'm sorry, [p]. There's just too little time left, with the curse."
+            g "But I promise we will after I have an answer for it."
+            p "..."
+            p "...Okay."
+            p "Um... good luck in town, then..!"
     # back to rpg mode
     scene black with fastFade
     call screen map_screen with fastFade
