@@ -17,6 +17,9 @@ label pink_interaction:
         jump p_libraryQuestDeliver
     elif lovedOneProgression == 5:
         jump p_convo2
+    else:
+        jump p_comfortEndingInitiate
+
 
 label p_breakfast1:
     p "something something eat some breakfast"
@@ -52,6 +55,7 @@ label p_breakfast2:
     # back to rpg mode
 
 label p_sweetsQuestStart:
+    $ lovedOneProgression += 1
     # back to rpg mode
 
 label p_sweetsQuestDeliver:
@@ -59,9 +63,11 @@ label p_sweetsQuestDeliver:
         # dialogue chain reminding you about the quest
     else:
         #delivering the sweets and the crystal
+        $ lovedOneProgression += 1
     # back to rpg mode
 
 label p_libraryQuestStart:
+    $ lovedOneProgression += 1
     # back to rpg mode
 
 label p_libraryQuestDeliver:
@@ -69,10 +75,27 @@ label p_libraryQuestDeliver:
         # dialogue chain reminding you about the quest
     else:
         #delivering the book
+        $ lovedOneProgression += 1
     # back to rpg mode
 
 label p_convo1:
+    $ lovedOneProgression += 1
     # back to rpg mode
 
 label p_convo2:
+    $ lovedOneProgression += 1
     # back to rpg mode
+
+label p_comfortEndingInitiate:
+    g "()"
+    menu:
+        "> Spend the rest of the day with [p]?"
+
+        "Yes":
+            jump comfortEnding
+        
+        "No":
+            # back to rpg mode
+
+label comfortEnding:
+    # aaa

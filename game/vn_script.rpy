@@ -28,7 +28,16 @@ label startOfDay2:
     # TODO
 
 label startOfDay3:
-    # TODO
+    # fade from black
+    "> The curse will take effect at midnight. You must enact a solution before then."
+
+    # check for comfort ending prereqs, prompt it if fulfilled
+
+    # check for trial ending prereqs, prompt it if fulfilled
+
+    # check for magic ending prereqs, prompt it if fulfilled
+
+    # else, jump to rpg mode
 
 label outOfTime:
     # TODO
