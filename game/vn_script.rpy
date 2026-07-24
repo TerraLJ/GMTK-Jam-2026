@@ -56,9 +56,13 @@ label startOfDay3:
 
     # check for comfort ending prereqs, prompt it if fulfilled
     elif lovedOneProgression == 6:
-        player "(something about maybe just spending this last day with [p])"
-        player "(maybe even multiple lines about it)"
-        player "(kind of out of time now anyway soo)"
+        g "(The last day.)"
+        g "(Even if I spent the entire day looking now, there's just no time to find an answer anymore.)"
+        g "(Could I have done something more? Or would it have ended like this all the same?)"
+        g "(...)"
+        g "(I can't be dwelling on this now. Not while she is still here with me.)"
+        g "(I can grieve later. For now... I should just spend what time we have left together with her.)"
+
         menu:
             "> Spend the rest of the day with [p]? "
 
@@ -66,7 +70,8 @@ label startOfDay3:
                 jump comfortEnding
             
             "No.":
-                player "(some thought about how they can talk to pink if they change their mind on this)"
+                player "(...Maybe I'll do a little bit of searching.)"
+                player "(But [p] will be here if I want to talk to her.)"
                 # back to rpg mode
                 scene black with fastFade
                 call screen map_screen with fastFade

@@ -121,5 +121,5 @@ label lowCrystals:
     player "Ah... I don't have enough of those on me."
     shopkeep "Those crystals grow all over that cave to the northwest!"
     shopkeep "Of course, you've gotta watch out for the little beasties roaming around in there too."
-    # ^ edit this dialogue I think it could use more, or just. something
+    # ^ edit this dialogue I think it could use more, or just. something TODO
     jump shopHub
