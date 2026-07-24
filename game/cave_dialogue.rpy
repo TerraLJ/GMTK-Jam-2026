@@ -43,3 +43,4 @@ label caveDialog:
 
 label trialEnding:
     # TODO
+    jump gameOver

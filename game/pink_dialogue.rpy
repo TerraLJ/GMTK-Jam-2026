@@ -99,3 +99,4 @@ label p_comfortEndingInitiate:
 
 label comfortEnding:
     # aaa
+    jump gameOver

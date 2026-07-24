@@ -41,6 +41,7 @@ label startOfDay3:
 
 label outOfTime:
     # TODO
+    jump gameOver
 
 label gameOver:
     menu:

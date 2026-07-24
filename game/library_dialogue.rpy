@@ -76,6 +76,7 @@ label library_p:
 
 label curseTransferEnding:
     "placeholder."
+    # this one gets its own game over screen i think
 
 label spellEnding:
     player "(I think... I think I've finally done it.)"
@@ -85,3 +86,4 @@ label spellEnding:
     player "-!? (When did it get so late!? I need to get home, now!)"
     # TODO add more
     # teleports to home
+    jump gameOver
