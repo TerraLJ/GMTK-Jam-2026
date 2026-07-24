@@ -38,6 +38,8 @@ label startOfDay3:
     # check for magic ending prereqs, prompt it if fulfilled
 
     # else, jump to rpg mode
+    scene black with fastFade
+    call screen map_screen with fastFade
 
 label outOfTime:
     # TODO

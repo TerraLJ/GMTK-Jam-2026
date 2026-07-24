@@ -36,6 +36,8 @@ label p_breakfast1:
             g "Sorry, but I don't have time for that today."
             # sad pink noises
     # back to rpg mode
+    scene black with fastFade
+    call screen map_screen with fastFade
 
 label p_breakfast2:
     p "something something eat some breakfast but again. you look exhausted"
@@ -53,38 +55,68 @@ label p_breakfast2:
             g "Sorry, but I don't have time for that today."
             # sad pink noises
     # back to rpg mode
+    scene black with fastFade
+    call screen map_screen with fastFade
 
 label p_sweetsQuestStart:
+    p "wa"
+    g "wawa"
     $ lovedOneProgression += 1
     # back to rpg mode
+    scene black with fastFade
+    call screen map_screen with fastFade
 
 label p_sweetsQuestDeliver:
     if not hasSweets:
         # dialogue chain reminding you about the quest
+        p "wawa my sweets wawawa"
     else:
         #delivering the sweets and the crystal
-        $ lovedOneProgression += 1
+        p "yayy my sweets wawawa"
+        p "ooo pretty crystal also wowie"
+        python:
+            lovedOneProgression += 1
+            numCrystals -= 1
     # back to rpg mode
+    scene black with fastFade
+    call screen map_screen with fastFade
 
 label p_libraryQuestStart:
+    p "find my pages but like a whole lot of them because it's a book"
     $ lovedOneProgression += 1
     # back to rpg mode
+    scene black with fastFade
+    call screen map_screen with fastFade
 
 label p_libraryQuestDeliver:
     if not hasPinkBook:
         # dialogue chain reminding you about the quest
+        p "you did not find my pages :("
     else:
         #delivering the book
+        p "My pages!!! :D"
         $ lovedOneProgression += 1
     # back to rpg mode
+    scene black with fastFade
+    call screen map_screen with fastFade
 
 label p_convo1:
+    p "wawawawa?"
+    g "wawawa"
+    p "this is just like rain world. our wawas"
     $ lovedOneProgression += 1
     # back to rpg mode
+    scene black with fastFade
+    call screen map_screen with fastFade
 
 label p_convo2:
+    p "have you heard of the hit game persona 4"
+    g "that's not the one that vaguely inspired us tho why are you bringing it up"
+    p "ummm. teehee"
     $ lovedOneProgression += 1
     # back to rpg mode
+    scene black with fastFade
+    call screen map_screen with fastFade
 
 label p_comfortEndingInitiate:
     g "()"
@@ -96,6 +128,8 @@ label p_comfortEndingInitiate:
         
         "No":
             # back to rpg mode
+            scene black with fastFade
+            call screen map_screen with fastFade
 
 label comfortEnding:
     # aaa

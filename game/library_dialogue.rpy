@@ -66,6 +66,9 @@ label library_g:
                 jump spellEnding
             if actionsLeft <= 0:
                 jump endOfDay
+            else:
+                scene black with fastFade
+                call screen map_screen with fastFade
         
         "Leave the library.":
             scene black with fastFade
