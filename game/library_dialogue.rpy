@@ -24,7 +24,7 @@ label library:
 
 label library_g:
     # library scenes when playing as Grey
-    if not curseBreakDiscovered:
+    if not g_curseBreakDiscovered:
         # Has never studied in the library before
         player "(A library... Perhaps I could find something in here about the curse?)"
         menu:
