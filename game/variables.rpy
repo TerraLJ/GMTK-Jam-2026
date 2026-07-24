@@ -18,10 +18,8 @@ default p_curseBreakDiscovered = False
 
 # Day and action related variables
 default day = 1
-default actionsLeft = 5
-default extraAction = False
-# ^ Split extraAction into two variables for Day 2 and 3? So Pink/Grey
-# can have extra comments on if you're taking care of yourself?
+default actionsLeft = 3
+default breakfast = False
 
 # Progression of interactions with Pink/Gray
 default lovedOneProgression = 0
@@ -35,7 +33,7 @@ init python:
         global curseTransferObtained
         global day
         global actionsLeft
-        global extraAction
+        global breakfast
         global lovedOneProgression
 
         swordLevel = 0
@@ -44,47 +42,24 @@ init python:
         curseTransferObtained = False
         # discoveries persist between runs
         day = 1
-        actionsLeft = 5
-        extraAction = False
+        actionsLeft = 3
+        breakfast = False
         lovedOneProgression = 0
         return
-
-    def newDay():
-        # sets up variables for the next day
-        global day
-        global actionsLeft
-        global extraAction
-
-        day += 1
-        if day == 2:
-            actionsLeft = 3
-        elif day == 3:
-            actionsLeft = 1
-        else:
-            actionsLeft = 0
-        if extraAction:
-            actionsDone += 1
-        extraAction = False
 
     def updateMagic():
         # returns True if level up occurred
         global timesMagicPracticed
         global magicLevel
-        
+
         timesMagicPracticed += 1
         if timesMagicPracticed == 1 and magicLevel < 1:
             magicLevel += 1
             return True
-        elif timesMagicPracticed == 2 and magicLevel < 2:
+        elif timesMagicPracticed == 3 and magicLevel < 2:
             magicLevel += 1
             return True
-        elif timesMagicPracticed == 4 and magicLevel < 3:
-            magicLevel += 1
-            return True
-        elif timesMagicPracticed == 6 and magicLevel < 4:
-            magicLevel += 1
-            return True
-        elif timesMagicPracticed == 9 and magicLevel < 5:
+        elif timesMagicPracticed == 6 and magicLevel < 3:
             magicLevel += 1
             return True
         return False

@@ -2,7 +2,7 @@ label library:
     # shared start for entering library
     scene library inside with fastFade
 
-    if curseTransferObtained and magicLevel >= 3:
+    if curseTransferObtained and magicLevel >= 2:
         player "(I have everything I need now. I think I can cast the spell to transfer the curse...)"
         player "(...Should I do it?)"
         menu:
@@ -62,7 +62,7 @@ label library_g:
                 player "(Progress was slower today. I'm still making some, but... It just never feels like enough.)"
                 "> You will need to practice again before you can level up..."
             $ actionsLeft -= 1
-            if magicLevel == 5:
+            if magicLevel == 3:
                 jump spellEnding
             if actionsLeft <= 0:
                 jump endOfDay
@@ -84,3 +84,4 @@ label spellEnding:
     player "(...)"
     player "-!? (When did it get so late!? I need to get home, now!)"
     # TODO add more
+    # teleports to home
