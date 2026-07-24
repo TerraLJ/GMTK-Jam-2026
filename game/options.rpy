@@ -84,12 +84,12 @@ define config.intra_transition = dissolve
 
 ## A transition that is used after a game has been loaded.
 
-define config.after_load_transition = None
+define config.after_load_transition = dissolve
 
 
 ## Used when entering the main menu after the game has ended.
 
-define config.end_game_transition = None
+define config.end_game_transition = dissolve
 
 
 ## A variable to set the transition used when the game starts does not exist.
@@ -152,6 +152,9 @@ define config.save_directory = "GameJam2026-1784765389"
 
 define config.window_icon = "gui/window_icon.png"
 
+init python:
+    # Tell Ren'Py NOT to clear your map/screens when a new context starts
+    config.context_clear_layers = [ 'transient' ]
 
 ## Build configuration #########################################################
 ##

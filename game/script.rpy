@@ -12,6 +12,7 @@ default shopFlag = False
 default rpg = True
 default room_name = "gray_house"
 default room = None
+define fastFade = Fade(0.3, 0, 0.3)
 
 #TODO: placeholder
 default max_countdown = 5
@@ -20,7 +21,6 @@ default countdown = max_countdown
 # The game starts here.
 
 label start:
-    $ player = g
     jump beginning
 
 label rpg_section:

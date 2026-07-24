@@ -161,7 +161,7 @@ init python:
     town.unoccupy (23, 16)
     town.unoccupy (27, 26)
 
-    cave = MapDenizen (23, 16, "house door.png", 49, 49, leave_room)
+    cave = MapDenizen (23, 16, "house door.png", 49, 49, cave)
     town.occupy (12, 12, cave)
     town.occupy (12, 13, cave)
 
@@ -171,13 +171,13 @@ init python:
     lancer = MapDenizen (30, 15, "lancer.png", 72, 70, shop)
     town.occupy (30, 15, lancer)
 
-    blacksmith = MapDenizen (24, 7, "lancer.png", 72, 70, shop)
+    blacksmith = MapDenizen (24, 7, "lancer.png", 72, 70, blacksmith)
     town.occupy (24, 7, blacksmith)
 
     library_door = MapDenizen (34, 7, "lancer.png", 72, 70, library)
     town.occupy (34, 7, library_door)
 
-    bridge = MapDenizen (27, 26, "lancer.png", 72, 70, shop)
+    bridge = MapDenizen (27, 26, "lancer.png", 72, 70, bridge)
     town.occupy (27, 26, bridge)
 
     # FIX: Interaction tracking mapping engine logic

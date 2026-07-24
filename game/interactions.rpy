@@ -12,13 +12,6 @@
     def disappear(denizen):
         room.unoccupy (denizen.x, denizen.y)
 
-    def self_op(denizen): pass
-    def no_op(denizen): pass
-    def disappear(denizen): room.unoccupy (denizen.x, denizen.y)
-    def shop (denizen): renpy.jump("shopMenu")
-    def library (denizen): pass
-    def blacksmith (denizen): pass
-
     def leave_room (denizen):
         global room_name
         global room
@@ -59,11 +52,19 @@
     def shop (denizen):
         renpy.jump("shopMenu")
 
+    def cave (denizen):
+        renpy.jump("caveDialog")
+
     def library (denizen):
         renpy.jump("library")
 
     def blacksmith (denizen):
-        pass
+        renpy.jump ("blacksmithMenu")
+
+    def bridge (denizen):
+        global commentFlag
+        commentFlag = True
+        renpy.call_in_new_context("bridgeText")
 
     def leave_rpg (denizen):
         global rpg
