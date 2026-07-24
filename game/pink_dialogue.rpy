@@ -29,9 +29,9 @@ label p_breakfast1:
     p "..."
     p "Please..?"
     menu:
-        "> Eat breakfast with [p]? This will take 1 action."
+        "> You have [actionsLeft] actions left."
 
-        "Eat breakfast.":
+        "Eat breakfast with [p]. (This will take 1 action.)":
             g "...I suppose it's been some time since I last had a meal..."
             p "What?!"
             p "When's the last time you ate?"
@@ -72,9 +72,9 @@ label p_breakfast1:
 label p_breakfast2:
     p "something something eat some breakfast but again. you look exhausted"
     menu:
-        "> Eat breakfast with [p]? This will take 1 action."
+        "> You have [actionsLeft] actions left."
 
-        "Sure.":
+        "Eat breakfast with [p]. (This will take 1 action.)":
             g "Sure,"
             #TODO continue
             p "You're looking better already!"
@@ -103,12 +103,23 @@ label p_sweetsQuestDeliver:
         p "wawa my sweets wawawa"
     else:
         #delivering the sweets and the crystal
-        p "yayy my sweets wawawa"
-        p "ooo pretty crystal also wowie"
-        python:
-            lovedOneProgression += 1
-            numCrystals -= 1
-            sweetsQuestProgression = 4
+        p "Oh, you're back!"
+        menu:
+        "> You have [actionsLeft] actions left."
+
+        "Deliver the sweets. (This will take 1 action.)":
+            p "yayy my sweets wawawa"
+            p "ooo pretty crystal also wowie"
+            python:
+                lovedOneProgression += 1
+                numCrystals -= 1
+                sweetsQuestProgression = 4
+                actionsLeft -= 1
+            if actionsLeft <= 0:
+                jump endOfDay
+        
+        "Not now."
+            p "Um... Be safe out there..!"
     # back to rpg mode
     scene black with fastFade
     call screen map_screen with fastFade
@@ -126,26 +137,60 @@ label p_libraryQuestDeliver:
         p "you did not find my pages :("
     else:
         #delivering the book
-        p "My pages!!! :D"
-        $ lovedOneProgression += 1
+        p "What's up?"
+        menu:
+        "> You have [actionsLeft] actions left."
+
+        "Deliver the library book. (This will take 1 action.)":
+            p "My pages!!! :D"
+            $ lovedOneProgression += 1
+            $ actionsLeft -= 1
+            if actionsLeft <= 0:
+                jump endOfDay
+        
+        "Not now."
+            g "Nevermind, it's nothing."
+            p "Oh... Okay."
     # back to rpg mode
     scene black with fastFade
     call screen map_screen with fastFade
 
 label p_convo1:
     p "wawawawa?"
-    g "wawawa"
-    p "this is just like rain world. our wawas"
-    $ lovedOneProgression += 1
+    menu:
+        "> You have [actionsLeft] actions left."
+
+        "Spend time with [p]. (This will take 1 action.)":
+            g "wawawa"
+            p "this is just like rain world. our wawas"
+            $ lovedOneProgression += 1
+            $ actionsLeft -= 1
+            if actionsLeft <= 0:
+                jump endOfDay
+        
+        "Do not."
+            g "grown ass woman"
+            p "no i'm gonna have no more birthdays actually"
     # back to rpg mode
     scene black with fastFade
     call screen map_screen with fastFade
 
 label p_convo2:
     p "have you heard of the hit game persona 4"
-    g "that's not the one that vaguely inspired us tho why are you bringing it up"
-    p "ummm. teehee"
-    $ lovedOneProgression += 1
+    menu:
+        "> You have [actionsLeft] actions left."
+
+        "Spend time with [p]. (This will take 1 action.)":
+            g "that's not the one that vaguely inspired us tho why are you bringing it up"
+            p "ummm. teehee"
+            $ lovedOneProgression += 1
+            $ actionsLeft -= 1
+            if actionsLeft <= 0:
+                jump endOfDay
+        
+        "Do not."
+            g "nah"
+            p "booo"
     # back to rpg mode
     scene black with fastFade
     call screen map_screen with fastFade
@@ -165,4 +210,5 @@ label p_comfortEndingInitiate:
 
 label comfortEnding:
     # aaa
+    "wow comfort"
     jump gameOver
