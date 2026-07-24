@@ -39,8 +39,6 @@ label caveDialog:
             scene black with fastFade
             call screen map_screen with fastFade
 
-    # Sword Level 0 and 0 crystals means player has never been to the cave (in this run)
-
 label trialEnding:
     # TODO
     jump gameOver
