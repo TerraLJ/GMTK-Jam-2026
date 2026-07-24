@@ -45,7 +45,7 @@ screen map_screen ():
         $ cam_y = map_rows / 2.0
     else:
         $ min_camera_y = screen_half_y / tile_size
-        $ max_camera_y = map_rows - (screen_half_y / tile_size)
+        $ max_camera_y = map_rows
         $ cam_y = max(min_camera_y, min(room.center_y + 0.5, max_camera_y))
         $ offset_y = screen_half_y - (tile_size * cam_y)
 
