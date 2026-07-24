@@ -36,6 +36,7 @@
             teleport_x = 9
             teleport_y = 5
 
+        renpy.transition(fastFade)
         room = getattr(store, room_name)
         
         # FIX: Relocate the sprite position and map arrays correctly
@@ -47,7 +48,7 @@
         room.center_x = teleport_x
         room.center_y = teleport_y
 
-        return True
+        renpy.restart_interaction()
 
     def shop (denizen):
         renpy.jump("shopMenu")

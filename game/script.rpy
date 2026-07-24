@@ -26,10 +26,9 @@ label start:
 label rpg_section:
     init python:
         config.keymap['button_select'].remove('K_RETURN')
-
     $ room = getattr(store, room_name)
     while rpg:
-        call screen map_screen
+        call screen map_screen with fastFade
 
     $ config.keymap['button_select'].append('K_RETURN')
     return
