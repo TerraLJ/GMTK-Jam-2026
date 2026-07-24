@@ -11,9 +11,9 @@ label caveDialog:
         # swordLevel == 2
         player "I can attempt the Wishgranter's Trial."
     menu:
-        "> Explore the cave? This will take 1 action."
+        "> You have [actionsLeft] actions left."
 
-        "Collect crystals.":
+        "Collect crystals. (This will take 1 action.)":
             player "(The floor and walls of this cave are filled with beautiful, shining crystals.)"
             player "(While taking care to avoid monsters, I spent time collecting some that were loose enough to pick up. Perhaps they'll be valuable.)"
             "> You obtained Gleaming Crystals x2."
@@ -22,7 +22,7 @@ label caveDialog:
             if actionsLeft <= 0:
                 jump endOfDay
         
-        "Hunt for monsters." if swordLevel > 0:
+        "Hunt for monsters. (This will take 1 action.)" if swordLevel > 0:
             player "(The Blacksmith's sword is sharp, and far better at fighting off monsters than my old wooden one.)"
             player "(I'm not the most experienced fighter, but I still managed to take down a couple of those beasts and picked up their remains.)"
             player "(I feel... Stronger now, too.)"
@@ -32,7 +32,8 @@ label caveDialog:
             if actionsLeft <= 0:
                 jump endOfDay
 
-        "Attempt the trial." if swordLevel >= 2:
+        "Attempt the trial. (This will take 1 action.)" if swordLevel >= 2:
+            $ actionsLeft -= 1
             jump trialEnding
 
         "Leave the cave.":
@@ -45,8 +46,8 @@ label trialEnding:
     menu:
         # At this point the player has 0 actions
         # It's a menu but only one option is actually available
-        "> This will take 1 action."
+        "> You have [actionsLeft] actions left."
 
-        "Press onward":
+        "Press onward. (This will take 1 action.)":
             "woahh cool dragon woahhhh"
     jump gameOver

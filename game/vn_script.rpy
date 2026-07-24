@@ -40,9 +40,8 @@ label startOfDay3:
     # check for curse transfer ending prereqs, prompt it if fulfilled
     if curseTransferObtained and magicLevel >= 2:
         player "(I have everything I need now. I think I can cast the spell to transfer the curse...)"
-        player "(...Should I do it?)"
         menu:
-            "> This will take 1 action."
+            player "(...Should I do it?)"
 
             "Transfer the curse.":
                 $ curseTransferCompleted = True
@@ -61,12 +60,12 @@ label startOfDay3:
         player "(maybe even multiple lines about it)"
         player "(kind of out of time now anyway soo)"
         menu:
-            "> Spend the rest of the day with [p]?"
+            "> Spend the rest of the day with [p]? "
 
-            "Yes":
+            "Yes.":
                 jump comfortEnding
             
-            "No":
+            "No.":
                 player "(some thought about how they can talk to pink if they change their mind on this)"
                 # back to rpg mode
                 scene black with fastFade
@@ -78,12 +77,12 @@ label startOfDay3:
         menu: 
             "> Attempt the trial?"
 
-            "Yes":
+            "Yes.":
                 "> You make your way to the cave."
                 # fade to black?
                 jump trialEnding
             
-            "Not now":
+            "Not now.":
                 player "(I can visit the cave later today. I should prepare first.)"
                 scene black with fastFade
                 call screen map_screen with fastFade
@@ -94,11 +93,11 @@ label startOfDay3:
         menu:
             "> Go to the library?"
 
-            "Yes":
+            "Yes.":
                 # fade to black?
                 jump library
 
-            "Not now":
+            "Not now.":
                 player "(Maybe later today. I need to be quick, though: I'm running out of time.)"
                 scene black with fastFade
                 call screen map_screen with fastFade
