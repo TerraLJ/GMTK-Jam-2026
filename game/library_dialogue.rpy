@@ -40,7 +40,7 @@ label library_g:
                 "> Your magical ability leveled up! It is now level 1."
                 python:
                     magicLevel = 1
-                    magicPracticeCount = 1
+                    timesMagicPracticed = 1
                     g_curseBreakDiscovered = True
                     actionsLeft -= 1
                 if actionsLeft <= 0:
@@ -55,8 +55,7 @@ label library_g:
 
         "Spend time practicing magic.":
             player "(I read through the book and practiced my control over casting spells.)"
-            $  magicPracticeCount += 1
-            if updateMagic(magicPracticeCount):
+            if updateMagic():
                 player "(I really feel like I'm getting better!)"
                 "> Your magical ability leveled up! It is now level [magicLevel]."
             else:

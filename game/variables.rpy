@@ -7,7 +7,7 @@ default curseTransferCompleted = False
 # Variables that are shared across both characters because they reset
 default swordLevel = 0
 default magicLevel = 0
-default magicPracticeCount = 0
+default timesMagicPracticed = 0
 default curseTransferObtained = False
 
 # Discovery flags are not reset across runs
@@ -29,7 +29,15 @@ default lovedOneProgression = 0
 init python:
     def resetVariables():
         # Function to easily reset variables
-        # TODO: THIS MIGHT NOT WORK
+        global swordLevel
+        global magicLevel
+        global timesMagicPracticed
+        global curseTransferObtained
+        global day
+        global actionsLeft
+        global extraAction
+        global lovedOneProgression
+
         swordLevel = 0
         magicLevel = 0
         timesMagicPracticed = 0
@@ -43,6 +51,10 @@ init python:
 
     def newDay():
         # sets up variables for the next day
+        global day
+        global actionsLeft
+        global extraAction
+
         day += 1
         if day == 2:
             actionsLeft = 3
@@ -54,8 +66,12 @@ init python:
             actionsDone += 1
         extraAction = False
 
-    def updateMagic(timesMagicPracticed):
+    def updateMagic():
         # returns True if level up occurred
+        global timesMagicPracticed
+        global magicLevel
+        
+        timesMagicPracticed += 1
         if timesMagicPracticed == 1 and magicLevel < 1:
             magicLevel += 1
             return True
