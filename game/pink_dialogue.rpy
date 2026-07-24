@@ -24,7 +24,7 @@ label pink_interaction:
 label p_breakfast1:
     p "something something eat some breakfast"
     menu:
-        "Eat breakfast with [p]? This will take 1 action."
+        "> Eat breakfast with [p]? This will take 1 action."
 
         "Sure.":
             g "Sure,"
@@ -42,7 +42,7 @@ label p_breakfast1:
 label p_breakfast2:
     p "something something eat some breakfast but again. you look exhausted"
     menu:
-        "Eat breakfast with [p]? This will take 1 action."
+        "> Eat breakfast with [p]? This will take 1 action."
 
         "Sure.":
             g "Sure,"
