@@ -8,6 +8,14 @@ default curseTransferCompleted = False
 default swordLevel = 0
 default magicLevel = 0
 default timesMagicPracticed = 0
+
+# Maybe the inventory items should be in a dictionary or something but ummmm
+# go my poor code
+default numCrystals = 0
+default numShards = 0
+default hasShopkeepSwordItem = False
+default hasSweets = False
+default hasPinkBook = False
 default curseTransferObtained = False
 
 # Discovery flags are not reset across runs
@@ -35,6 +43,11 @@ init python:
         global actionsLeft
         global breakfast
         global lovedOneProgression
+        global numCrystals = 0
+        global numShards = 0
+        global hasShopkeepSwordItem = False
+        global hasSweets = False
+        global hasPinkBook = False
 
         swordLevel = 0
         magicLevel = 0
@@ -45,6 +58,12 @@ init python:
         actionsLeft = 3
         breakfast = False
         lovedOneProgression = 0
+
+        numCrystals = 0
+        numShards = 0
+        hasShopkeepSwordItem = False
+        hasSweets = False
+        hasPinkBook = False
         return
 
     def updateMagic():
