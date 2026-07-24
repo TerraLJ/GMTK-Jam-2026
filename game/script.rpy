@@ -20,6 +20,7 @@ default countdown = max_countdown
 # The game starts here.
 
 label start:
+    $ player = g
     jump beginning
 
 label rpg_section:

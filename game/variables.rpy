@@ -1,7 +1,7 @@
 # Place to keep all variables and flags so they don't get redefined elsewhere
 
-# player 0 is Grey, player 1 is Pink
-default player = 0
+# player variable points to either the character g or p
+default player = g
 default curseTransferCompleted = False
 
 # Variables that are shared across both characters because they reset

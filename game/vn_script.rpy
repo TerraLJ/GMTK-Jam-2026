@@ -11,7 +11,7 @@
     jump rpg_section
 
 label endOfDay:
-    "(I'm exhausted... I don't think I can keep going today.)"
+    player "(I'm exhausted... I don't think I can keep going today.)"
     # fade to black?
     $ newDay()
     if day == 2:
