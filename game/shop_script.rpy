@@ -1,6 +1,6 @@
 ﻿label shopMenu:
     scene shop inside with fastFade
-    #mostly for learning purposes
+    #mostly for learning purposesx
     image shopkeep happy = "shopkeep happy.png"
     image shopkeep embarrassed = "shopkeep embarrassed.png"
     define shopkeep = Character("Shopkeeper", color = "#3239c8")

@@ -67,6 +67,11 @@
         commentFlag = True
         renpy.call_in_new_context("bridgeText")
 
+    def church (denizen):
+        global commentFlag
+        commentFlag = True
+        renpy.call_in_new_context("churchText")
+
     def leave_rpg (denizen):
         global rpg
         rpg = False

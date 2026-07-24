@@ -57,24 +57,21 @@ screen map_screen ():
         add room.img:
             pos (int(offset_x), int(offset_y))
 
-        # Extract all denizens currently present on the active map
+        # Extract all visual objects currently present on the active map
         $ active_denizens = []
         for row in room.map:
             for tile in row:
-                if tile.occupant is not None and isinstance(tile.occupant, MapDenizen):
-                    $ active_denizens.append(tile.occupant)
+                if tile.occupant is not None:
+                    if isinstance(tile.occupant, (MapDenizen, MapBuilding)):
+                        $ active_denizens.append(tile.occupant)
 
-        # Sort denizens by their Y-coordinate for proper depth sorting (Y-Sorting)
-        $ active_denizens.sort(key=lambda d: d.y)
+        # SORTING FIX: Sort everything together using the new visual baseline attribute
+        $ active_denizens.sort(key=lambda d: d.sort_y)
 
-        # Sort denizens by their Y-coordinate for proper depth sorting (Y-Sorting)
-        $ active_denizens.sort(key=lambda d: d.y)
-
-        # Render denizens relative to the exact same camera baseline
+        # Render everything relative to the exact same camera baseline
         for denizen in active_denizens:
             $ offx, offy = denizen.getOffset()
             
-            # Use the tracking points (cam_x/cam_y) so sprites move in lockstep with the background
             if (map_cols * tile_size) <= 1920:
                 $ sprite_render_x = offset_x + (tile_size * denizen.x)
             else:
