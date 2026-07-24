@@ -23,8 +23,6 @@ init python:
             return self.map[y][x].occupant is None
         
         def occupy (self, x, y, denizen):
-            if not self.isEmpty (x, y):
-                return
             self.map[y][x].occupant = denizen
 
         def unoccupy (self, x, y):
@@ -173,23 +171,6 @@ init python:
     town.occupy (22+buffer, 26+buffer, wall)
     town.occupy (23+buffer, 27+buffer, wall)
     town.occupy (24+buffer, 27+buffer, wall)
-
-    #so you can kinda step inside the cave and triggers have room
-    town.unoccupy (13+buffer, 12+buffer)
-    town.unoccupy (13+buffer, 13+buffer)
-    town.unoccupy (30+buffer, 15+buffer)
-    town.unoccupy (24+buffer, 7+buffer)
-    town.unoccupy (34+buffer, 7+buffer)
-    town.unoccupy (23+buffer, 16+buffer)
-    town.unoccupy (27+buffer, 26+buffer)
-    town.unoccupy (29+buffer, 7+buffer)
-
-    town.unoccupy(19+buffer, 7+buffer)
-    town.unoccupy (24+buffer, 16+buffer)
-    town.unoccupy (20+buffer, 16+buffer)
-    town.unoccupy (35+buffer, 15+buffer)
-    town.unoccupy (36+buffer, 7+buffer)
-    town.unoccupy (26+buffer, 7+buffer)
 
     cave = MapDenizen (12+buffer, 12+buffer, "house door.png", 49, 49, cave)
     town.occupy (12+buffer, 12+buffer, cave)
