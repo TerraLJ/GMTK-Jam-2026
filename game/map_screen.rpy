@@ -100,13 +100,17 @@ screen map_screen ():
         key "keyup_K_LEFT" action [SetVariable("moving_left", False), SetVariable("move", "")]
         key "keyup_K_RIGHT" action [SetVariable("moving_right", False), SetVariable("move", "")]
 
-        if moving_up:
-            timer 0.075 repeat True action [Function(room.movePlayerDenizen, 0, -1), SetVariable("g_dir", "back"), SetVariable("move", "_move")]
-        elif moving_down:
-            timer 0.075 repeat True action [Function(room.movePlayerDenizen, 0, 1), SetVariable("g_dir", "front"), SetVariable("move", "_move")]
-        elif moving_left:
-            timer 0.075 repeat True action [Function(room.movePlayerDenizen, -1, 0), SetVariable("g_dir", "left"), SetVariable("move", "_move")]
-        elif moving_right:
-            timer 0.075 repeat True action [Function(room.movePlayerDenizen, 1, 0), SetVariable("g_dir", "right"), SetVariable("move", "_move")]
+        $ move_state = handle_character_input()
 
+        # 2. Execute the appropriate single timer based on the state
+        if move_state:
+            if move_state[0]:
+                timer repeat_input repeat True action [
+                Function(room.movePlayerDenizen, move_state[1], move_state[2]), 
+                SetVariable("move", "_move")
+            ]
+        
+            else:
+                timer repeat_input repeat False action SetVariable("g_dir", move_state[3])
+                
         key "K_RETURN" action Function(grayInteracts)

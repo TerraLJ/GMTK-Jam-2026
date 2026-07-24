@@ -58,23 +58,23 @@ image gray back_move:
 
 #TODO: add left and right
 image gray left_move:
-    "gray_front_1"
+    "gray_left_1"
     0.15
-    "gray_front_2"
+    "gray_left_2"
     0.2
-    "gray_front_3"
+    "gray_left_3"
     0.15
-    "gray_front_4"
+    "gray_left_4"
     0.2
     repeat
 
 image gray right_move:
-    "gray_back_1"
+    "gray_right_1"
     0.15
-    "gray_back_2"
+    "gray_right_2"
     0.2
-    "gray_back_3"
+    "gray_right_3"
     0.15
-    "gray_back_4"
+    "gray_right_4"
     0.2
     repeat
