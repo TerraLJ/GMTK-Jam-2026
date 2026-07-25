@@ -45,7 +45,6 @@ label startOfDay3:
 
             "Transfer the curse.":
                 $ curseTransferCompleted = True
-                # TODO
                 jump curseTransferEnding
 
             "Do not.":

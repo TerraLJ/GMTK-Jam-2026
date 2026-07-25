@@ -6,20 +6,17 @@ label library:
         player "(I have everything I need now. I think I can cast the spell to transfer the curse...)"
         player "(...Should I do it?)"
         menu:
-            "> This will take 1 action."
+            "> You have [actionsLeft] actions left."
 
-            "Transfer the curse.":
+            "Transfer the curse. (This will take 1 action.)":
                 $ curseTransferCompleted = True
-                # TODO
                 jump curseTransferEnding
 
             "Do not.":
-                # if player == g:
-                #     jump library_g
-                # else:
-                #     jump library_p
                 # For now, just always jump to library_g
                 jump library_g
+    # technically not a required line but ummm. I feel better with it there
+    jump library_g
 
 label library_g:
     # library scenes when playing as Grey
@@ -27,9 +24,9 @@ label library_g:
         # Has never studied in the library before
         player "(A library... Perhaps I could find something in here about the curse?)"
         menu:
-            "> Search the library? This will take 1 action."
+            "> You have [actionsLeft] actions left."
 
-            "Look around.":
+            "Look around. (This will take 1 action.)":
                 player "(I combed through the library's vast collection, desperate for ANYTHING that might help my situation.)"
                 player "(And...)"
                 player "(I actually found something. An old spellbook, detailing a way to break even the strongest of curses.)"
@@ -51,9 +48,9 @@ label library_g:
 
     player "(I'm still not skilled enough to break the curse... Should I practice my magic?)"
     menu:
-        "> Practice magic? This will take 1 action."
+        "> You have [actionsLeft] actions left."
 
-        "Spend time practicing magic.":
+        "Spend time practicing magic. (This will take 1 action.)":
             player "(I read through the book and practiced my control over casting spells.)"
             if updateMagic():
                 player "(I really feel like I'm getting better!)"
@@ -66,16 +63,17 @@ label library_g:
                 jump spellEnding
             if actionsLeft <= 0:
                 jump endOfDay
+            else:
+                scene black with fastFade
+                call screen map_screen with fastFade
         
         "Leave the library.":
             scene black with fastFade
             call screen map_screen with fastFade
 
-label library_p:
-    # library scenes when playing as Pink
-
 label curseTransferEnding:
     "placeholder."
+    # this one gets its own game over screen i think
 
 label spellEnding:
     player "(I think... I think I've finally done it.)"
@@ -85,3 +83,4 @@ label spellEnding:
     player "-!? (When did it get so late!? I need to get home, now!)"
     # TODO add more
     # teleports to home
+    jump gameOver
