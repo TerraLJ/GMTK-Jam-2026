@@ -209,6 +209,57 @@ label p_comfortEndingInitiate:
             call screen map_screen with fastFade
 
 label comfortEnding:
-    # aaa
-    "wow comfort"
+    # fade from black?
+    p "...Hey, [g]?"
+    g "Yes?"
+    p "You know, I'm... I'm still scared. I don't {i}want{/i} to die."
+    p "But I think I accepted it was gonna happen a few days ago. "
+    p "That's why I wanted to spend all this time with you. So maybe we could both end today not needing to regret the fact we didn't spend these last moments together."
+    p "And I'm really glad we could! I missed being able to hang out with you."
+    p "But... can I ask you for one more thing?"
+    g "..."
+    g "...I can do my best, but there's really not much I can give before midnight. There's just so little time."
+    p "It's nothing big, I swear. You don't even have to get up."
+    p "I just... I just want you to promise me something."
+    p "Just promise me you'll take care of yourself when I'm gone."
+    menu:
+        p "Just promise me you'll take care of yourself when I'm gone."
+
+        "...":
+            p "Please? I... I'm worried you'll just let yourself wither away."
+            p "Ever since it happened, you've not been taking care of yourself like you used to."
+            p "And I'm scared that after tonight, you'll just... let go entirely."
+
+            menu:
+                p "And I'm scared that after tonight, you'll just... let go entirely."
+
+                "...":
+                    p "I just don't want you to die, too. I don't want you to die because you let your guilt eat you alive."
+                    p "I know you tried your best. I {i}watched{/i} you work yourself to the bone. I just didn't realize just how badly you were doing that until you told me you couldn't remember the last time you ate."
+                    p "You were neglecting yourself. And, looking back now... I think maybe you were about to start neglecting to spend time with me. And even if you had done that... I don't know if that would have made things any better."
+                    p "Maybe there could have been an answer. But if there weren't... what then? It'd still end like these, but we wouldn't have gotten to have these last few days, either."
+                    p "This way, at least I have a few more happy memories to die with, instead of..."
+                    p "..."
+                    p "...Instead of dying alone, just because my sibling was too focused on trying to find a cure to realize I wanted to spend time with them."
+                    p "You did all you could. There's nothing for you to regret, I promise."
+                    p "And I know there's a bright future waiting somewhere. I won't be able to see it, but I know you can."
+                    p "So please, {i}live{/i}. Live for the both of us, okay?"
+                    p "Can you promise me that? Please?"
+                
+                "I promise.":
+                    jump promiseAccept
+
+label plead:
+    menu:
+        p "Can you promise me that? Please?"
+
+        "...":
+            p "{i}Please?{/i} "
+            jump plead
+        
+        "I promise.":
+            jump promiseAccept
+
+label promiseAccept:
+    "TODO"
     jump gameOver
