@@ -23,16 +23,23 @@
     gray_house.occupy (0, 1, wall)
     gray_house.occupy (1, 1, wall)
     gray_house.occupy (2, 1, wall)
-    #3, 1 is the bed/chest
+    pink_bed = MapBuilding(3, 1, "pink bed.png", 288, 216, visual_h_tiles=3, interaction=no_op)
+    gray_house.occupy (3, 1, pink_bed)
 
     gray_house.occupy (12, 1, wall)
     gray_house.occupy (12, 2, wall)
-    #12, 3 is the bed; 11, 0 is the chest
+    gray_bed = MapBuilding(13, 2, "gray bed.png", 144, 288, visual_h_tiles=4, interaction=no_op)
+    gray_house.occupy (13, 2, gray_bed)
+
+    drawer = MapBuilding(11, 0, "window and drawer.png", 432, 144, visual_h_tiles=2, interaction=no_op)
+    gray_house.occupy (11, 0, drawer)
 
     #wall walls
     gray_house.occupy (5, 4, wall)
     gray_house.occupy (8, 4, wall)
-    #5, 1 and 8, 1 are walls
+    bedroom_wall = MapBuilding(5, 1, "window and drawer.png", 72, 216, visual_h_tiles=3, interaction=no_op)
+    gray_house.occupy (5, 1, bedroom_wall)
+    gray_house.occupy (8, 1, bedroom_wall)
 
     j = 0
     while (j < 14):
@@ -45,7 +52,8 @@
         gray_house.occupy (k, 6, shelf)
         k += 1
 
-    #(5, 6) is the shelf/side table
+    shelf = MapBuilding(5, 6, "shelf and plant.png", 432, 216, visual_h_tiles=3, interaction=no_op)
+    gray_house.occupy (5, 6, shelf)
 
     #table
     gray_house.occupy (3, 9, wall)
@@ -55,7 +63,8 @@
     gray_house.occupy (3, 11, wall)
     gray_house.occupy (4, 11, wall)
     gray_house.occupy (3, 12, wall)
-    #4, 12 is the table
+    table = MapBuilding(4, 12, "dining table.png", 144, 360, visual_h_tiles=4, interaction=no_op)
+    gray_house.occupy (4, 12, table)
 
     gray_house.occupy (0, 9, wall)
     gray_house.occupy (1, 9, wall)
@@ -63,16 +72,16 @@
     gray_house.occupy (1, 11, wall)
     gray_house.occupy (1, 12, wall)
     gray_house.occupy (1, 13, wall)
-    gray_house.occupy (1, 14, wall)
-
-    #1, 15 is the end of the couch
+    couch = MapBuilding(1, 13, "house couch.png", 144, 504, visual_h_tiles=6, interaction=no_op)
+    gray_house.occupy (1, 13, couch)
 
     i = 0
     while (i < 7):
         gray_house.occupy (9, 8+i, wall)
         i += 1
 
-    #9, 14 is the end of the island
+    island = MapBuilding(9, 13, "kitchen island.png", 72, 504, visual_h_tiles=6, interaction=no_op)
+    gray_house.occupy (9, 13, island)
 
     cupboards = MapDenizen (13, 14, "house door.png", 49, 49, cupboard)
     j = 0
@@ -80,12 +89,15 @@
         gray_house.occupy (13, 6+j, cupboards)
         j += 1
 
+    cupboard = MapBuilding(13, 11, "kitchen cabinets.png", 72, 504, visual_h_tiles=9, interaction=no_op)
+    gray_house.occupy (13, 11, cupboard)
     #13, 14 is the end of the cupboards
 
     gray_house.unoccupy (6, 5)
     gray_house.unoccupy (7, 5)
 
     inside_house_door = MapDenizen (7, 14, "house door.png", 49, 49, leave_room)
+    gray_house.occupy (6, 14, inside_house_door)
     gray_house.occupy (7, 14, inside_house_door)
 
     #stupid wall implementation

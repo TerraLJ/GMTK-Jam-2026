@@ -71,10 +71,15 @@ screen map_screen ():
             fixed:
                 pos (int(sprite_render_x + offx), int(sprite_render_y + offy))
                 
-                at transform:
-                    matrixanchor (tile_size // 2, tile_size)
-                    
-                    matrixtransform RotateMatrix(-15, 0, 0)
+                if (map_cols * tile_size) <= 1920:
+                    at transform:
+                        matrixanchor (tile_size // 2, tile_size)
+                        matrixtransform RotateMatrix(12, 0, 0)
+
+                else:
+                    at transform:
+                        matrixanchor (tile_size // 2, tile_size)
+                        matrixtransform RotateMatrix(-15, 0, 0)
                 
                 add denizen.img
 
