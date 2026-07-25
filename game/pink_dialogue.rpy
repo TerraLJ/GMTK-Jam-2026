@@ -22,10 +22,16 @@ label pink_interaction:
 
 
 label p_breakfast1:
+
     # TODO: IMPLEMENT PORTRAITS AND EXPRESSION CHANGES
-    p "Oh, I..."
-    p "I really thought you were just going to head out immediately again."
-    p "But this is good! We could have some breakfast together before you go!"
+    if (left_breakfast == False):
+        p "Oh, I..."
+        p "I really thought you were just going to head out immediately again."
+        p "But this is good! We could have some breakfast together before you go!"
+
+    else:
+        p "We can still have a meal together, you know…!"
+
     p "..."
     p "Please..?"
     menu:
@@ -59,17 +65,22 @@ label p_breakfast1:
             p "I really missed it."
             "> You have gained 1 action for the day."
 
+            $ breakfast = True
+
         "I don't have time.":
             g "I'm sorry, [p]. There's just too little time left, with the curse."
             g "But I promise we will after I have an answer for it."
             p "..."
             p "...Okay."
             p "Um... good luck in town, then..!"
+
+            $ left_breakfast = True
     # back to rpg mode
     scene black with fastFade
     call screen map_screen with fastFade
 
 label p_breakfast2:
+    $breakfast = False
     p "something something eat some breakfast but again. you look exhausted"
     menu:
         "> You have [actionsLeft] actions left."
@@ -80,6 +91,7 @@ label p_breakfast2:
             p "You're looking better already!"
             g "(I suppose I do feel a little more refreshed.)"
             "> You have gained 1 action for the day."
+            $ breakfast = True
 
         "I don't have time.":
             g "Sorry, but I don't have time for that today."
@@ -105,21 +117,21 @@ label p_sweetsQuestDeliver:
         #delivering the sweets and the crystal
         p "Oh, you're back!"
         menu:
-        "> You have [actionsLeft] actions left."
-
-        "Deliver the sweets. (This will take 1 action.)":
-            p "yayy my sweets wawawa"
-            p "ooo pretty crystal also wowie"
-            python:
-                lovedOneProgression += 1
-                numCrystals -= 1
-                sweetsQuestProgression = 4
-                actionsLeft -= 1
-            if actionsLeft <= 0:
-                jump endOfDay
-        
-        "Not now."
-            p "Um... Be safe out there..!"
+            "> You have [actionsLeft] actions left."
+            
+            "Deliver the sweets. (This will take 1 action.)":
+                p "yayy my sweets wawawa"
+                p "ooo pretty crystal also wowie"
+                python:
+                    lovedOneProgression += 1
+                    numCrystals -= 1
+                    sweetsQuestProgression = 4
+                    actionsLeft -= 1
+                if actionsLeft <= 0:
+                    jump endOfDay
+            
+            "Not now.":
+                p "Um... Be safe out there..!"
     # back to rpg mode
     scene black with fastFade
     call screen map_screen with fastFade
@@ -139,24 +151,25 @@ label p_libraryQuestDeliver:
         #delivering the book
         p "What's up?"
         menu:
-        "> You have [actionsLeft] actions left."
+            "> You have [actionsLeft] actions left."
 
-        "Deliver the library book. (This will take 1 action.)":
-            p "My pages!!! :D"
-            $ lovedOneProgression += 1
-            $ bookQuestProgression = 3
-            $ actionsLeft -= 1
-            if actionsLeft <= 0:
-                jump endOfDay
-        
-        "Not now."
-            g "Nevermind, it's nothing."
-            p "Oh... Okay."
+            "Deliver the library book. (This will take 1 action.)":
+                p "My pages!!! :D"
+                $ lovedOneProgression += 1
+                $ bookQuestProgression = 3
+                $ actionsLeft -= 1
+                if actionsLeft <= 0:
+                    jump endOfDay
+            
+            "Not now.":
+                g "Nevermind, it's nothing."
+                p "Oh... Okay."
     # back to rpg mode
     scene black with fastFade
     call screen map_screen with fastFade
 
 label p_convo1:
+    
     p "wawawawa?"
     menu:
         "> You have [actionsLeft] actions left."
@@ -169,7 +182,7 @@ label p_convo1:
             if actionsLeft <= 0:
                 jump endOfDay
         
-        "Do not."
+        "Do not.":
             g "grown ass woman"
             p "no i'm gonna have no more birthdays actually"
     # back to rpg mode
@@ -189,7 +202,7 @@ label p_convo2:
             if actionsLeft <= 0:
                 jump endOfDay
         
-        "Do not."
+        "Do not.":
             g "nah"
             p "booo"
     # back to rpg mode

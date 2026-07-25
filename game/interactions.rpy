@@ -75,10 +75,15 @@
         commentFlag = True
         renpy.call_in_new_context("churchText")
 
-    def npc_chat (denizen):
+    def npc_1_chat (denizen):
         global commentFlag
         commentFlag = True
-        renpy.call_in_new_context("npcChat")
+        renpy.call_in_new_context("npc1Chat")
+
+    def npc_2_chat (denizen):
+        global commentFlag
+        commentFlag = True
+        renpy.call_in_new_context("npc2Chat")
 
     def shelf (denizen):
         global commentFlag
@@ -89,6 +94,16 @@
         global commentFlag
         commentFlag = True
         renpy.call_in_new_context("cupboardInspect")
+
+    def pinkBedInteract (denizen):
+        global commentFlag
+        commentFlag = True
+        renpy.call_in_new_context("pinkBed")
+
+    def grayBedInteract (denizen):
+        global commentFlag
+        commentFlag = True
+        renpy.call_in_new_context("grayBed")
 
     def leave_rpg (denizen):
         global rpg

@@ -20,15 +20,17 @@
         i += 1
 
     #Bed walls
-    gray_house.occupy (0, 1, wall)
-    gray_house.occupy (1, 1, wall)
-    gray_house.occupy (2, 1, wall)
-    pink_bed = MapBuilding(3, 1, "pink bed.png", 288, 216, visual_h_tiles=3, interaction=no_op)
+    pink_bed_trigger = MapDenizen (0, 0, "lancer", 72, 72, pinkBedInteract)
+    gray_house.occupy (0, 1, pink_bed_trigger)
+    gray_house.occupy (1, 1, pink_bed_trigger)
+    gray_house.occupy (2, 1, pink_bed_trigger)
+    pink_bed = MapBuilding(3, 1, "pink bed.png", 288, 216, visual_h_tiles=3, interaction=pinkBedInteract)
     gray_house.occupy (3, 1, pink_bed)
 
-    gray_house.occupy (12, 1, wall)
-    gray_house.occupy (12, 2, wall)
-    gray_bed = MapBuilding(13, 2, "gray bed.png", 144, 288, visual_h_tiles=4, interaction=no_op)
+    gray_bed_trigger = MapDenizen (0, 0, "lancer", 72, 72, grayBedInteract)
+    gray_house.occupy (12, 1, gray_bed_trigger)
+    gray_house.occupy (12, 2, gray_bed_trigger)
+    gray_bed = MapBuilding(13, 2, "gray bed.png", 144, 288, visual_h_tiles=4, interaction=grayBedInteract)
     gray_house.occupy (13, 2, gray_bed)
 
     drawer = MapBuilding(11, 0, "window and drawer.png", 432, 144, visual_h_tiles=2, interaction=no_op)
@@ -37,14 +39,18 @@
     #wall walls
     gray_house.occupy (5, 4, wall)
     gray_house.occupy (8, 4, wall)
-    bedroom_wall = MapBuilding(5, 1, "window and drawer.png", 72, 216, visual_h_tiles=3, interaction=no_op)
-    gray_house.occupy (5, 1, bedroom_wall)
-    gray_house.occupy (8, 1, bedroom_wall)
+    bedroom_wall_1 = MapBuilding(5, 1, "bedroom wall.png", 72, 216, visual_h_tiles=3, interaction=no_op)
+    bedroom_wall_2 = MapBuilding(8, 1, "bedroom wall.png", 72, 216, visual_h_tiles=3, interaction=no_op)
+    gray_house.occupy (5, 1, bedroom_wall_1)
+    gray_house.occupy (8, 1, bedroom_wall_2)
 
     j = 0
     while (j < 14):
         gray_house.occupy (j, 5, wall)
         j += 1
+
+    kitchen_wall = MapBuilding(13, 5, "kitchen wall.png", 432, 216, visual_h_tiles=3, interaction=no_op)
+    gray_house.occupy (13, 5, kitchen_wall)
 
     shelf = MapDenizen (7, 14, "house door.png", 49, 49, shelf)
     k = 0
@@ -181,7 +187,7 @@
     library_door = MapDenizen (34+buffer, 7+buffer, "lancer.png", 72, 70, library)
     town.occupy (34+buffer, 7+buffer, library_door)
 
-    bridge = MapDenizen (27+buffer, 26+buffer, "lancer.png", 72, 70, bridge)
+    bridge = MapDenizen (27+buffer, 26+buffer, "bridge blocker.png", 72, 70, bridge)
     town.occupy (27+buffer, 26+buffer, bridge)
 
     church_library = MapBuilding (36+buffer, 7+buffer, "church library face", 648, 360, visual_h_tiles=5, interaction=no_op)
@@ -193,5 +199,8 @@
     outside_house_door = MapDenizen (23+buffer, 16+buffer, "house door.png", 49, 49, leave_room)
     town.occupy (23+buffer, 16+buffer, inside_house_door)
 
-    npc_1 = MapDenizen (15+buffer, 11+buffer, "npc 1.png", 72, 70, npc_chat)
+    npc_1 = MapDenizen (15+buffer, 11+buffer, "npc 1.png", 72, 70, npc_1_chat)
     town.occupy (15+buffer, 11+buffer, npc_1)
+
+    npc_2 = MapDenizen (35+buffer, 20+buffer, "npc 2.png", 72, 70, npc_2_chat)
+    town.occupy (35+buffer, 20+buffer, npc_2)

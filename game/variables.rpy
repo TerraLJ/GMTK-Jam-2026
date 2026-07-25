@@ -33,6 +33,8 @@ default p_curseBreakDiscovered = False
 default day = 1
 default actionsLeft = 3
 default breakfast = False
+default left_breakfast = False
+default left_house = False
 
 # Progression of interactions with Pink/Gray
 default lovedOneProgression = 0
@@ -63,6 +65,8 @@ init python:
         day = 1
         actionsLeft = 3
         breakfast = False
+        left_breakfast = False
+        left_house = False
         lovedOneProgression = 0
 
         numCrystals = 0
