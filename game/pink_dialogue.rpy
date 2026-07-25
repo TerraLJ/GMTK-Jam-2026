@@ -261,5 +261,39 @@ label plead:
             jump promiseAccept
 
 label promiseAccept:
-    "TODO"
+    p "Thank you."
+    # [cg of [Gray] looks at the sky. The moon is almost at its zenith]
+    g "(...)"
+    # [cg of [Pink] looking up with them.]
+    p "Oh... it really is almost time, huh?"
+    p "Haha..."
+    p "..."
+    p "I almost don't feel scared anymore. Just… sad to be going away."
+    # [cg of her leaning against [Gray]? maybe?]
+    p "But I guess this means goodbye."
+    menu:
+        g "(...)"
+
+        "...Yeah.":
+            p "Haha..! Just a \"yeah\"?"
+            p "I guess you weren't ever really all that good with these kinds of things, but…"
+            p "Well, it's okay. I know what you mean."
+            p "But, um, I hope... I hope you remember..."
+
+        "...Goodbye, [p].":
+            p "...Bye, [g]."
+            p "Remember your promise to take care of yourself, 'cause if there's an afterlife… I don't want to see you there for a long, long while."
+            p "Because that means you're still okay here."
+            p "And... And remember, um..!"
+    menu:
+        "..."
+
+        "I love you.":
+            p "...I love you too."
+            p "Thank you for being there for me. Thank you for trying so hard to save me."
+            p "I'm glad I got to be your sister."
+            p "And... I hope you always, always remember... no matter what happens..."
+    p "..."
+    p "...Remember that I'll always love you."
+    # [FIN: grave and bouquet? In memory of a sister loved]
     jump gameOver
