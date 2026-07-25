@@ -20,9 +20,7 @@ default curseTransferObtained = False
 # 0: Not started. 1: Started. 2: Shopkeep spoken to, sweets not obtained.
 # 3: Sweets obtained. 4: Sweets delivered.
 default sweetsQuestProgression = 0
-
-#
-default wishBladeProgression = 0
+default wishSwordStarted = False
 
 # Discovery flags are not reset across runs
 default g_curseTransferDiscovered = False
@@ -54,6 +52,7 @@ init python:
         global hasShopkeepSwordItem
         global hasPinkBook
         global sweetsQuestProgression
+        global wishSwordStarted
 
         swordLevel = 0
         magicLevel = 0
@@ -71,6 +70,7 @@ init python:
         hasPinkBook = False
 
         sweetsQuestProgression = 0
+        wishSwordStarted = False
         return
 
     def updateMagic():

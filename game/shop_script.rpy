@@ -35,8 +35,7 @@ label shopHub:
         "Ask about sweets." if sweetsQuestProgression > 0:
             jump buySweets
 
-        "Ask about the (UNNAMED MATERIAL).":
-            # TODO: if statement
+        "Ask about the (UNNAMED MATERIAL)." if wishSwordStarted:
             jump buySwordItem
         
         "Leave the shop.":
@@ -115,7 +114,29 @@ label buySpellbook:
         jump lowCrystals
 
 label buySwordItem:
-    "."
+    if hasShopkeepSwordItem:
+        player "Thank you for ()."
+        shopkeep "I'm always happy to be of service!"
+    else:
+        player "The Blacksmith said you carry (ITEM NAME)?"
+        shopkeep "I sure do! Did she send you to help her restock?"
+        player "Not... Exactly."
+        shopkeep "I see! I'll continue with our usual trades, then. How does two crystals sound for it?"
+        if numCrystals >= 2:
+            menu:
+                "> Trade 2 Gleaming Crystals for the (UNNAMED ITEM)?"
+
+                "Yes.":
+                    shopkeep "Here you are, then!"
+                    $ numCrystals -= 2
+                    $ hasShopkeepSwordItem = True
+                    jump shopHub
+
+                "No.":
+                    shopkeep "."
+                    jump shopHub
+        else:
+            jump lowCrystals
 
 label lowCrystals:
     player "Ah... I don't have enough of those on me."
