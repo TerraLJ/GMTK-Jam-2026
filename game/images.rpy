@@ -2,7 +2,18 @@
 
 #default direction facing is front
 default g_dir = "front"
+default p_dir = "right"
+default sprite_player = "gray"
+default sprite_sibling = "pink"
 default move = ""
+
+python:
+    if (player == g):
+        sprite_player = "gray"
+        sprite_sibling = "pink"
+    else:
+        sprite_player = "pink"
+        sprite_sibling = "gray"
 
 #how offset we need to be for the sprite to be in the right space
 define g_offset = -10
@@ -26,55 +37,76 @@ init python:
 
         room.triggerInteraction (x, y)
 
-image gray = "gray [g_dir][move]"
+#These two names are actually misleading. they're player (gray) and sibling (pink)
+#buttttt i'm lazy so i'm not changing it. good luck future me
+image gray = ConditionSwitch(
+    "g_dir == 'front' and move == '_move'", "gray front_move",
+    "g_dir == 'front'", "gray front",
+    "g_dir == 'back' and move == '_move'", "gray back_move",
+    "g_dir == 'back'", "gray back",
+    "g_dir == 'left' and move == '_move'", "gray left_move",
+    "g_dir == 'left'", "gray left",
+    "g_dir == 'right' and move == '_move'", "gray right_move",
+    "g_dir == 'right'", "gray right",
+)
 
-image gray front = "gray_front_1"
-image gray back = "gray_back_1"
-image gray left = "gray_left_1"
-image gray right = "gray_right_1"
+image pink = ConditionSwitch(
+    "p_dir == 'front'", "pink front",
+    "p_dir == 'back'", "pink back",
+    "p_dir == 'left'", "pink left",
+    "p_dir == 'right'", "pink right",
+)
 
-#the numbers are the timing delay between animation frames
+image gray front = "[sprite_player]_front_1"
+image gray back = "[sprite_player]_back_1"
+image gray left = "[sprite_player]_left_1"
+image gray right = "[sprite_player]_right_1"
+
+image pink front = "[sprite_sibling]_front_1"
+image pink back = "[sprite_sibling]_back_1"
+image pink left = "[sprite_sibling]_left_1"
+image pink right = "[sprite_sibling]_right_1"
+
 image gray front_move:
-    "gray_front_1"
+    "[sprite_player]_front_1" with None
     0.15
-    "gray_front_2"
+    "[sprite_player]_front_2" with None
     0.2
-    "gray_front_3"
+    "[sprite_player]_front_3" with None
     0.15
-    "gray_front_4"
+    "[sprite_player]_front_4" with None
     0.2
     repeat
 
 image gray back_move:
-    "gray_back_1"
+    "[sprite_player]_back_1" with None
     0.15
-    "gray_back_2"
+    "[sprite_player]_back_2" with None
     0.2
-    "gray_back_3"
+    "[sprite_player]_back_3" with None
     0.15
-    "gray_back_4"
+    "[sprite_player]_back_4" with None
     0.2
     repeat
 
-#TODO: add left and right
 image gray left_move:
-    "gray_left_1"
+    "[sprite_player]_left_1" with None
     0.15
-    "gray_left_2"
-    0.2
-    "gray_left_3"
+    "[sprite_player]_left_2" with None
     0.15
-    "gray_left_4"
-    0.2
+    "[sprite_player]_left_3" with None
+    0.15
+    "[sprite_player]_left_4" with None
+    0.15
     repeat
 
 image gray right_move:
-    "gray_right_1"
+    "[sprite_player]_right_1" with None
     0.15
-    "gray_right_2"
-    0.2
-    "gray_right_3"
+    "[sprite_player]_right_2" with None
     0.15
-    "gray_right_4"
-    0.2
+    "[sprite_player]_right_3" with None
+    0.15
+    "[sprite_player]_right_4" with None
+    0.15
     repeat

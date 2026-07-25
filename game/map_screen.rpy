@@ -30,7 +30,7 @@ screen map_screen ():
         $ offset_x = screen_half_w - (tile_size * cam_x)
 
     if (map_rows * tile_size) <= 1080:
-        $ offset_y = screen_half_y - ((map_rows * tile_size) / 2.0)
+        $ offset_y = screen_half_y - ((map_rows * tile_size) / 2.0) - tile_size
         $ cam_y = map_rows / 2.0
     else:
         $ min_camera_y = screen_half_y / tile_size
@@ -111,6 +111,9 @@ screen map_screen ():
             ]
         
             else:
-                timer repeat_input repeat False action SetVariable("g_dir", move_state[3])
+                timer (repeat_input/2) repeat False action [
+                    SetVariable("g_dir", move_state[3]),
+                    SetVariable("move", "_move")
+                ]
                 
         key "K_RETURN" action Function(grayInteracts)

@@ -1,18 +1,21 @@
 ﻿init python:
-    house_map = [[MapTile() for j in range(12)] for i in range(11)]
+    house_map = [[MapTile() for j in range(14)] for i in range(15)]
     town_map = [[MapTile() for j in range(51)] for i in range(34)]
 
-    gray_house = LandMap(house_map, "gray house indoors.png", 9, 5)
+    gray_house = LandMap(house_map, "gray house indoors.png", 7, 8)
     town = LandMap(town_map, "town base.png", 13+buffer, 14+buffer)
 
-    store.gray_sprite = MapDenizen (9, 5, "gray", 72, 144, lambda d: None)
-    gray_house.occupy (9, 5, store.gray_sprite)
+    store.gray_sprite = MapDenizen (11, 1, "gray", 72, 144, lambda d: None)
+    gray_house.occupy (11, 1, store.gray_sprite)
+
+    store.pink_sprite = MapDenizen (8, 8, "pink", 72, 144, sibling)
+    gray_house.occupy (8, 8, store.pink_sprite)
 
     wall = MapOccupant (6, 10)
     gray_house.occupy (6, 10, wall)
 
-    inside_house_door = MapDenizen (4, 10, "house door.png", 49, 49, leave_room)
-    gray_house.occupy (4, 10, inside_house_door)
+    inside_house_door = MapDenizen (7, 14, "house door.png", 49, 49, leave_room)
+    gray_house.occupy (7, 14, inside_house_door)
 
     #stupid wall implementation
     i = 0
@@ -23,8 +26,8 @@
 
     j = 0
     while (j < 18):
-        town.occupy (13+buffer, 9+j+buffer, wall)
-        town.occupy (37+buffer, 9+j+buffer, wall)
+        town.occupy (13+buffer, 8+j+buffer, wall)
+        town.occupy (37+buffer, 8+j+buffer, wall)
         j += 1
 
     k = 0
@@ -98,7 +101,7 @@
     bridge = MapDenizen (27+buffer, 26+buffer, "lancer.png", 72, 70, bridge)
     town.occupy (27+buffer, 26+buffer, bridge)
 
-    church_library = MapBuilding (36+buffer, 7+buffer, "church library face", 648, 216, visual_h_tiles=3, interaction=no_op)
+    church_library = MapBuilding (36+buffer, 7+buffer, "church library face", 648, 360, visual_h_tiles=5, interaction=no_op)
     town.occupy (36+buffer, 7+buffer, church_library)
 
     church_door = MapDenizen (29+buffer, 7+buffer, "house door.png", 49, 49, church)

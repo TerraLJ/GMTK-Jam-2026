@@ -14,3 +14,12 @@ label churchText:
     $ commentFlag = False
 
     return
+
+
+label npcChat:
+    "Hey, have you heard that there's this weird door in the mountains?"
+    "I think it somehow got lost..."
+    $ global commentFlag
+    $ commentFlag = False
+
+    return

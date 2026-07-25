@@ -4,6 +4,9 @@
     def self_op(denizen):
         pass
 
+    def sibling(denizen):
+        renpy.jump ("pink_interaction")
+
     #i'm not interacting with you
     def no_op(denizen):
         pass
@@ -29,12 +32,12 @@
 
         if (room_name == "gray_house"):
             room_name = "town"
-            teleport_x = 23
-            teleport_y = 17
+            teleport_x = 23+buffer
+            teleport_y = 17+buffer
         else:
             room_name = "gray_house"
-            teleport_x = 9
-            teleport_y = 5
+            teleport_x = 7
+            teleport_y = 13
 
         renpy.transition(fastFade)
         room = getattr(store, room_name)
@@ -71,6 +74,11 @@
         global commentFlag
         commentFlag = True
         renpy.call_in_new_context("churchText")
+
+    def npc_chat (denizen):
+        global commentFlag
+        commentFlag = True
+        renpy.call_in_new_context("npcChat")
 
     def leave_rpg (denizen):
         global rpg
