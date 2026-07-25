@@ -23,3 +23,18 @@ label npcChat:
     $ commentFlag = False
 
     return
+
+label shelfInspect:
+    "You look at the books on the shelves."
+    "They haven't changed since the last time you checked."
+    $ global commentFlag
+    $ commentFlag = False
+
+    return
+
+label cupboardInspect:
+    "You open a cabinet and get hit with a blast of cinnamon."
+    $ global commentFlag
+    $ commentFlag = False
+
+    return

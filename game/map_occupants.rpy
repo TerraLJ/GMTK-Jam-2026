@@ -11,8 +11,79 @@
     store.pink_sprite = MapDenizen (8, 8, "pink", 72, 144, sibling)
     gray_house.occupy (8, 8, store.pink_sprite)
 
-    wall = MapOccupant (6, 10)
-    gray_house.occupy (6, 10, wall)
+    wall = MapOccupant (0, 0)
+
+    i = 0
+    while (i < 14):
+        gray_house.occupy (i, 0, wall)
+        gray_house.occupy (i, 14, wall)
+        i += 1
+
+    #Bed walls
+    gray_house.occupy (0, 1, wall)
+    gray_house.occupy (1, 1, wall)
+    gray_house.occupy (2, 1, wall)
+    #3, 1 is the bed/chest
+
+    gray_house.occupy (12, 1, wall)
+    gray_house.occupy (12, 2, wall)
+    #12, 3 is the bed; 11, 0 is the chest
+
+    #wall walls
+    gray_house.occupy (5, 4, wall)
+    gray_house.occupy (8, 4, wall)
+    #5, 1 and 8, 1 are walls
+
+    j = 0
+    while (j < 14):
+        gray_house.occupy (j, 5, wall)
+        j += 1
+
+    shelf = MapDenizen (7, 14, "house door.png", 49, 49, shelf)
+    k = 0
+    while (k < 5):
+        gray_house.occupy (k, 6, shelf)
+        k += 1
+
+    #(5, 6) is the shelf/side table
+
+    #table
+    gray_house.occupy (3, 9, wall)
+    gray_house.occupy (4, 9, wall)
+    gray_house.occupy (3, 10, wall)
+    gray_house.occupy (4, 10, wall)
+    gray_house.occupy (3, 11, wall)
+    gray_house.occupy (4, 11, wall)
+    gray_house.occupy (3, 12, wall)
+    #4, 12 is the table
+
+    gray_house.occupy (0, 9, wall)
+    gray_house.occupy (1, 9, wall)
+    gray_house.occupy (1, 10, wall)
+    gray_house.occupy (1, 11, wall)
+    gray_house.occupy (1, 12, wall)
+    gray_house.occupy (1, 13, wall)
+    gray_house.occupy (1, 14, wall)
+
+    #1, 15 is the end of the couch
+
+    i = 0
+    while (i < 7):
+        gray_house.occupy (9, 8+i, wall)
+        i += 1
+
+    #9, 14 is the end of the island
+
+    cupboards = MapDenizen (13, 14, "house door.png", 49, 49, cupboard)
+    j = 0
+    while (j < 8):
+        gray_house.occupy (13, 6+j, cupboards)
+        j += 1
+
+    #13, 14 is the end of the cupboards
+
+    gray_house.unoccupy (6, 5)
+    gray_house.unoccupy (7, 5)
 
     inside_house_door = MapDenizen (7, 14, "house door.png", 49, 49, leave_room)
     gray_house.occupy (7, 14, inside_house_door)

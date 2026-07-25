@@ -80,6 +80,16 @@
         commentFlag = True
         renpy.call_in_new_context("npcChat")
 
+    def shelf (denizen):
+        global commentFlag
+        commentFlag = True
+        renpy.call_in_new_context("shelfInspect")
+
+    def cupboard (denizen):
+        global commentFlag
+        commentFlag = True
+        renpy.call_in_new_context("cupboardInspect")
+
     def leave_rpg (denizen):
         global rpg
         rpg = False
