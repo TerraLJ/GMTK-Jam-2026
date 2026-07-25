@@ -14,12 +14,13 @@ default timesMagicPracticed = 0
 default numCrystals = 0
 default numShards = 0
 default hasShopkeepSwordItem = False
-default hasPinkBook = False
 default curseTransferObtained = False
 
 # 0: Not started. 1: Started. 2: Shopkeep spoken to, sweets not obtained.
 # 3: Sweets obtained. 4: Sweets delivered.
 default sweetsQuestProgression = 0
+# 0: Not started. 1: Started. 2: Book acquired, not delivered. 3: Book delivered.
+default bookQuestProgression = 0
 default wishSwordStarted = False
 
 # Discovery flags are not reset across runs
@@ -50,8 +51,8 @@ init python:
         global numCrystals
         global numShards
         global hasShopkeepSwordItem
-        global hasPinkBook
         global sweetsQuestProgression
+        global bookQuestProgression
         global wishSwordStarted
 
         swordLevel = 0
@@ -67,9 +68,9 @@ init python:
         numCrystals = 0
         numShards = 0
         hasShopkeepSwordItem = False
-        hasPinkBook = False
 
         sweetsQuestProgression = 0
+        bookQuestProgression = 0
         wishSwordStarted = False
         return
 

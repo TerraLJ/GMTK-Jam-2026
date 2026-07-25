@@ -132,7 +132,7 @@ label p_libraryQuestStart:
     call screen map_screen with fastFade
 
 label p_libraryQuestDeliver:
-    if not hasPinkBook:
+    if bookQuestProgression < 2:
         # dialogue chain reminding you about the quest
         p "you did not find my pages :("
     else:
@@ -144,6 +144,7 @@ label p_libraryQuestDeliver:
         "Deliver the library book. (This will take 1 action.)":
             p "My pages!!! :D"
             $ lovedOneProgression += 1
+            $ bookQuestProgression = 3
             $ actionsLeft -= 1
             if actionsLeft <= 0:
                 jump endOfDay

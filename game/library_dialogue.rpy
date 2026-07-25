@@ -41,6 +41,9 @@ label library_g:
                     actionsLeft -= 1
                 if actionsLeft <= 0:
                     jump endOfDay
+
+            "Look for [p]'s book." if bookQuestProgression > 0:
+                jump getPinkBook
             
             "Leave the library.":
                 scene black with fastFade
@@ -67,9 +70,34 @@ label library_g:
                 scene black with fastFade
                 call screen map_screen with fastFade
         
+        "Look for [p]'s book." if bookQuestProgression > 0:
+            jump getPinkBook
+        
         "Leave the library.":
             scene black with fastFade
             call screen map_screen with fastFade
+
+label getPinkBook:
+    if bookQuestProgression == 3:
+        # already delivered book
+        player "(I already gave [p] her book. I hope she's enjoying it at home...)"
+        player "(...I don't need to get her a second one.)"
+        jump library_g
+    elif bookQuestProgression == 2:
+        # have book, not delivered
+        player "(I already found the book [p] requested.)"
+        player "(I should get it to her quickly.)"
+        jump library_g
+    else:
+        # progression == 1, don't have book yet
+        player "(Right, I came here for [p] today.)"
+        # fade to black?
+        player "(I spent some time searching for that book she asked for...)"
+        player "(Fortunately, it wasn't too difficult to find.)"
+        # fade background back in?
+        player "(I should bring this back home to her.)"
+        $ bookQuestProgression = 2
+        jump library_g
 
 label curseTransferEnding:
     "placeholder."
