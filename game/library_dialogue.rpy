@@ -103,6 +103,32 @@ label getPinkBook:
         $ bookQuestProgression = 2
         jump library_g
 
+label spellEnding:
+    player "(I think... I think I've finally done it.)"
+    player "(I understand the spell completely. I've honed my ability to wield my magic.)"
+    player "(I can break the curse.)"
+    player "(...)"
+    player "-!? (When did it get so late!? I need to get home, now!)"
+    # fade to black
+    player "(I dashed out of the library as fast as I could, neglecting even to collect my belongings.)"
+    # cg of grey looking up at the moon
+    scene moon gray
+    player "It's... Already moonhigh."
+    # fade to black followed by immediate fade out of black? like vision's fading
+    player "(I... I need to get home.)"
+    # fade to black
+    player "{i}[p]!?{/i}"
+    player "(It was too late.)"
+    player "({i}I{/i} was too late.)"
+    player "(The curse had taken effect.)"
+    player "([p] laid)" #TODO: description of how she's dead as hell
+    #she seemed as though she may have been waiting for them. a sibling who never came home in time
+    player "([p]...)"
+    player "(I'm so sorry. I got so close. Just a little more time, and I {i}know{/i} I could have...)"
+    player "(I wasn't enough.)"
+    player "(I... I feel weak. I can't...)"
+    jump gameOver
+
 label curseTransferEnding:
     g "(It must have worked. I feel as if there is something growing inside my chest, something that wants to wrap my heart and force it still.)"
     g "(...)"
@@ -197,29 +223,3 @@ label curseTransferEnding:
             # [fade to black, then to ending]
     scene grave gray
     #[FIN: [Pink] kneeling by a gravestone with a bouquet. In memory of a sibling who gave her their all]
-
-label spellEnding:
-    player "(I think... I think I've finally done it.)"
-    player "(I understand the spell completely. I've honed my ability to wield my magic.)"
-    player "(I can break the curse.)"
-    player "(...)"
-    player "-!? (When did it get so late!? I need to get home, now!)"
-    # fade to black
-    player "(I dashed out of the library as fast as I could, neglecting even to collect my belongings.)"
-    # cg of grey looking up at the moon
-    scene moon gray
-    player "It's... Already moonhigh."
-    # fade to black followed by immediate fade out of black? like vision's fading
-    player "(I... I need to get home.)"
-    # fade to black
-    player "{i}[p]!?{/i}"
-    player "(It was too late.)"
-    player "({i}I{/i} was too late.)"
-    player "(The curse had taken effect.)"
-    player "([p] laid)" #TODO: description of how she's dead as hell
-    #she seemed as though she may have been waiting for them. a sibling who never came home in time
-    player "([p]...)"
-    player "(I'm so sorry. I got so close. Just a little more time, and I {i}know{/i} I could have...)"
-    player "(I wasn't enough.)"
-    player "(I... I feel weak. I can't...)"
-    jump gameOver
