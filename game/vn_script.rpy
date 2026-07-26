@@ -111,10 +111,16 @@ label startOfDay3:
     call screen map_screen with fastFade
 
 label outOfTime:
-    # TODO
-    "some internal monologue from Grey about how Pink is so fucking dead"
-    "and them rushing home maybe"
-    "and how they never felt like they even got close to finding a solution"
+    g "(...)"
+    g "(...It's already moonhigh.)"
+    g "(Even trying to put everything I had into finding an answer, it still wasn't enough. I still didn't have enough time.)"
+    g "(And now…)"
+    g "(...)"
+    g "(Forgive me, [p], for never getting to spend another day with you.)"
+    g "(Perhaps I should have asked what was  on your mind yesterday, but… I was blind.)"
+    g '(I was so blind that I hadn't even spared a moment to share one last meal with you.)"
+    g "(I...)"
+    g "(I should have been there for you, instead, when you asked.)"
     jump gameOver
 
 label gameOver:
