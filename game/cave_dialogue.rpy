@@ -1,4 +1,5 @@
 # for scenes in the cave
+image dragon = "dragon.png"
 
 label caveDialog:
     scene cave inside with fastFade
@@ -75,5 +76,6 @@ label trialEnding:
         "> You have [actionsLeft] actions left."
 
         "Press onward. (This will take 1 action.)":
+            scene dragon
             "woahh cool dragon woahhhh"
     jump gameOver

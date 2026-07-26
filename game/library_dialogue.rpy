@@ -1,3 +1,7 @@
+image grave gray = "grave-gray.png"
+image hug = "hug.png"
+image moon gray = "bad.png"
+
 label library:
     # shared start for entering library
     scene library inside with fastFade
@@ -107,7 +111,7 @@ label curseTransferEnding:
 
     # If not at home
     # TODO Terra help this might rely on map stuff i don't know your variables
-    g "(But there's still enough time to go home. To talk to Pink one last time.)"
+    # g "(But there's still enough time to go home. To talk to Pink one last time.)"
     # [fade to black, fade back into home?]
 
     # else, If at home
@@ -166,6 +170,7 @@ label curseTransferEnding:
     p "..."
     p "...There's no point in yelling at you about it, though. Not anymore. There's just no time left to waste on that, and I don't want those to be the last words you hear from me."
     # [cg of [Pink] hugging [Gray]?]
+    scene hug
     p "Thank you for always trying to help me. No matter if I got mad or frustrated with you, I was always glad to be your sister."
     p "I'm glad to know you loved me so much you were willing to give up everything for me."
     p "I hope you know I love you, too. More than the world. And I'll love you when you're gone, too."
@@ -177,6 +182,7 @@ label curseTransferEnding:
         "Close your eyes.":
             "..."
             # [fade to black, then to ending]
+    scene grave gray
     #[FIN: [Pink] kneeling by a gravestone with a bouquet. In memory of a sibling who gave her their all]
 
 label spellEnding:
@@ -188,6 +194,7 @@ label spellEnding:
     # fade to black
     player "(I dashed out of the library as fast as I could, neglecting even to collect my belongings.)"
     # cg of grey looking up at the moon
+    scene moon gray
     player "It's... Already moonhigh."
     # fade to black followed by immediate fade out of black? like vision's fading
     player "(I... I need to get home.)"

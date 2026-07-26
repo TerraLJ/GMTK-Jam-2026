@@ -1,4 +1,6 @@
-﻿label beginning:
+﻿image grave pink = "grave-pink.png"
+
+label beginning:
     #initialize your sprites here
     image pink happy = "pink_healthy_happy.png"
 
@@ -125,6 +127,7 @@ label outOfTime:
     jump gameOver
 
 label gameOver:
+    scene grave pink
     menu:
         "> You have failed to break the curse."
 
