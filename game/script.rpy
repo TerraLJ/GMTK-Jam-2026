@@ -3,8 +3,8 @@
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
 
-define p = Character("Pink", color = "#ffffff")
-define g = Character("Gray", color = "#ffffff")
+define p = Character("Phoebe", color = "#ffffff")
+define g = Character("Erin", color = "#ffffff")
 define config.rollback_enabled = False
 
 default commentFlag = False

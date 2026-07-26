@@ -32,9 +32,17 @@ default p_curseBreakDiscovered = False
 # Day and action related variables
 default day = 1
 default actionsLeft = 3
-default breakfast = False
-default left_breakfast = False
-default left_house = False
+
+default ate_breakfast1 = False
+default ate_breakfast2 = False
+default declined_breakfast = False
+default left_home = False
+
+# Day 1 actions regarding Pink
+default ate_breakfast1 = False
+
+# Day 2 actions regarding Pink
+default ate_breakfast2 = False
 
 default visited_cave = False
 
@@ -50,7 +58,10 @@ init python:
         global curseTransferObtained
         global day
         global actionsLeft
-        global breakfast
+        global ate_breakfast1
+        global ate_breakfast2
+        global declined_breakfast
+        global left_home
         global lovedOneProgression
         global numCrystals
         global numShards
@@ -70,8 +81,10 @@ init python:
         day = 1
         actionsLeft = 3
         breakfast = False
-        left_breakfast = False
-        left_house = False
+        ate_breakfast1 = False
+        ate_breakfast2 = False
+        declined_breakfast = False
+        left_home = False
         lovedOneProgression = 0
 
         numCrystals = 0

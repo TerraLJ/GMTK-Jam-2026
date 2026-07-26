@@ -29,7 +29,8 @@ label endOfDay:
 label startOfDay2:
     # fade from black
     "> The curse will take effect in two days at midnight. You must enact a solution before then."
-    # TODO
+    $ declined_breakfast = False
+    $ left_home = False
     scene black with fastFade
     call screen map_screen with fastFade
 
@@ -117,8 +118,8 @@ label outOfTime:
     g "(And now…)"
     g "(...)"
     g "(Forgive me, [p], for never getting to spend another day with you.)"
-    g "(Perhaps I should have asked what was  on your mind yesterday, but… I was blind.)"
-    g '(I was so blind that I hadn't even spared a moment to share one last meal with you.)"
+    g "(Perhaps I should have asked what was on your mind yesterday, but... I was blind.)"
+    g "(I was so blind that I hadn't even spared a moment to share one last meal with you.)"
     g "(I...)"
     g "(I should have been there for you, instead, when you asked.)"
     jump gameOver
