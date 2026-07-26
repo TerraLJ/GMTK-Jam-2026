@@ -146,10 +146,10 @@ label curseTransferEnding:
         p "[g]... Why did you have to do this?"
 
         "It was the only option I could find, and it was worth it.":
-        p "..."
+            p "..."
 
         "Because I love you.":
-        p "..."
+            p "..."
     p "...You stupid, self-sacrificial dummy..."
     p "Did you ever think I might not want to have to live in a world without you..?"
     menu:

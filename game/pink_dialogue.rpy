@@ -207,8 +207,8 @@ label p_sweetsQuestStart:
     $ lovedOneProgression += 1
     $ sweetsQuestProgression = 1
     $ actionsLeft -= 1
-        if actionsLeft <= 0:
-            jump endOfDay
+    if actionsLeft <= 0:
+        jump endOfDay
     # back to rpg mode
     scene black with fastFade
     call screen map_screen with fastFade
@@ -344,7 +344,7 @@ label p_libraryQuestStart:
                 $ lovedOneProgression += 1
 
             "Not especially. I wanted to check in on you.":
-                p: "Oh. Alright! And, um... I'm doing okay."
+                p "Oh. Alright! And, um... I'm doing okay."
     # back to rpg mode
     scene black with fastFade
     call screen map_screen with fastFade
