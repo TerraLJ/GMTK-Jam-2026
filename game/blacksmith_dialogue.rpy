@@ -5,6 +5,9 @@ define bs = Character("Blacksmith", color = "#ffffff")
 label blacksmithMenu:
     scene blacksmith with fastFade
     bs "Hey kiddo. What brings someone like you to my forge?"
+    jump blacksmithMenu2
+
+label blacksmithMenu2:
     menu:
         "> You have [actionsLeft] actions left."
 
@@ -58,7 +61,7 @@ label swordUpgrade:
             bs "..."
             bs "But that wooden sword of yours’ll keep you safe enough if you’re just gathering a few crystals."
 
-        jump blacksmithMenu
+        jump blacksmithMenu2
 
     if swordLevel == 1:
         if not hasShopkeepSwordItem or numShards < 1:
@@ -117,9 +120,9 @@ label swordUpgrade:
                         actionsLeft -= 1
                     if actionsLeft <= 0:
                         jump endOfDay
-        jump blacksmithMenu
+        jump blacksmithMenu2
     
     if swordLevel == 2:
         bs "Good luck in the Wishgranter's Trial, kid. Hope you get what you're searching for."
-        jump blacksmithMenu
+        jump blacksmithMenu2
         
