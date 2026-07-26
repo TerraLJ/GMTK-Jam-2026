@@ -1,3 +1,5 @@
+image moon pink = "comfort.png"
+
 # dialogue for interacting with Pink as Grey
 label pink_interaction:
     # decides which conversation to jump to for Pink
@@ -557,8 +559,10 @@ label plead:
 label promiseAccept:
     p "Thank you."
     # [cg of [Gray] looks at the sky. The moon is almost at its zenith]
+    scene moon gray
     g "(...)"
     # [cg of [Pink] looking up with them.]
+    scene moon pink
     p "Oh... it really is almost time, huh?"
     p "Haha..."
     p "..."
