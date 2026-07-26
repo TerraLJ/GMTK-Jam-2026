@@ -17,7 +17,7 @@ label caveDialog:
                 player "(It was filled with monsters.)"
                 player "(Of course. Of course a 'mystical wish-granting cave' would come with a catch.)"
                 player "(The wooden sword I brought with me was effective enough in scaring off some of the weaker beasts, but I can't venture very far with just that. It's little more than a toy, after all.)"
-                player "(The cave also contains" #TODO UNFINISHED CRYSTAL TALK
+                player "(The cave was also filled with countless shining crystals sprouting from the cavern walls and floor.)"
                 player "(I picked up a handful of loose ones before leaving. Perhaps they could be useful for something.)"
                 "> You obtained Gleaming Crystals x2."
                 $ numCrystals += 2

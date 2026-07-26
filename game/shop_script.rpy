@@ -3,14 +3,15 @@
     #mostly for learning purposesx
     image shopkeep happy = "shopkeep happy.png"
     image shopkeep embarrassed = "shopkeep embarrassed.png"
-    define shopkeep = Character("Shopkeeper", color = "#3239c8")
+    define shopkeep = Character("Shopkeeper", color = "#ffffff")
 
     show shopkeep happy
-    shopkeep "Hey buddy, what's up?"
-    shopkeep "I haven't seen you since.... gosh, how long has it been?"
-    shopkeep "How's your sister?"
-
-    player "(...I have a feeling that attempting to talk to him will take up a lot of my time, whether I like it or not.)"
+    if not visited_shop:
+        shopkeep "Don't think I've seen your face around here before! What can I get ya?"
+        player "(...I have a feeling that attempting to talk to him will take up a lot of my time, whether I like it or not.)"
+        $ visited_shop = True
+    else:
+        shopkeep "Ah, welcome back!"
 
     jump shopHub
     # scene black with fastFade
@@ -121,7 +122,7 @@ label buySwordItem:
         player "The Blacksmith said you carry (ITEM NAME)?"
         shopkeep "I sure do! Did she send you to help her restock?"
         player "Not... Exactly."
-        shopkeep "I see! I'll continue with our usual trades, then. How does two crystals sound for it?"
+        shopkeep "I see! I'll continue with our usual trades, then. How do two crystals sound for it?"
         if numCrystals >= 2:
             menu:
                 "> Trade 2 Gleaming Crystals for the (UNNAMED ITEM)?"
@@ -143,4 +144,10 @@ label lowCrystals:
     shopkeep "Those crystals grow all over that cave to the northwest!"
     shopkeep "Of course, you've gotta watch out for the little beasties roaming around in there too."
     # ^ edit this dialogue I think it could use more, or just. something TODO
+    jump shopHub
+
+label firstPurchase:
+    $ hasPurchased = True
+    # something here where grey and the shopkeep set up the crystal exchange deal for the first time
+    # This exists now but currently nothing jumps to it
     jump shopHub

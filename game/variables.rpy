@@ -45,6 +45,9 @@ default ate_breakfast1 = False
 default ate_breakfast2 = False
 
 default visited_cave = False
+default visited_shop = False
+default visited_blacksmith = False
+default hasPurchased = False
 
 # Progression of interactions with Pink/Gray
 default lovedOneProgression = 0
@@ -70,6 +73,9 @@ init python:
         global bookQuestProgression
         global wishSwordStarted
         global visited_cave
+        global visited_shop
+        global visited_blacksmith
+        global hasPurchased
 
         global g_curseTransferDiscovered
 
@@ -96,6 +102,9 @@ init python:
         wishSwordStarted = False
 
         visited_cave = False
+        visited_shop = False
+        visited_blacksmith = False
+        hasPurchased = False
 
         # resetting the curse transfer discovery actually to avoid bugs
         g_curseTransferDiscovered = False
