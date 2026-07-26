@@ -1,10 +1,9 @@
 # for scenes in the cave
 image dragon = "dragon.png"
-
-define dragon = Character("The Wishgranter", color= "#ffbf00")
+define dragon = Character("Wishgranter", color = "#ffffff")
 
 label caveDialog:
-    scene cave inside with fastFade
+    scene cave with fastFade
     if not visited_cave:
         $ visited_cave = True
         player "(This cave... I've heard legends of this place. Of its apparent capacity to grant wishes.)"
@@ -77,7 +76,80 @@ label trialEnding:
         # It's a menu but only one option is actually available
         "> You have [actionsLeft] actions left."
 
+        "Press onward. (This will take 1 action.)":            
+            g "(The trial…)"
+            g "(This is not hard in terms of combat, in truth, but…)"
+            g "(It is as the blacksmith said. It is a test of endurance and will. Everything looks the same down here, and the cave’s beasts infest every corner.)"
+            g "(The blade makes survival not a worry, at least, but…)"
+            g "(I have no idea if I’m any closer to the Wishgranter. I don’t even know how long I’ve been down here anymore.)"
+            g "(And I… I’m so…)"
+            g "(I’m so tired...)"
+            g "(...)"
+
+            scene black with fastFade
+
+    g "(...)"
+    g "(When had I fallen? How long had I been unaware?)"
+    g "(How much time is left before moonhigh?)"
+    g "(I…)"
+    g "(I don’t know. I don’t know. She could already be…)"
+    g "(...)"
+    g "(No… I can’t dwell. I don’t know if it’s true.)"
+    g "(But I know I can’t stop. I’m too close to stop now.)"
+
+    menu:
+        "> You have [actionsLeft] actions left."
+
         "Press onward. (This will take 1 action.)":
-            scene dragon
-            "woahh cool dragon woahhhh"
-    jump gameOver
+
+            g "(She needs this.)"
+            g "(She needs me to win the Wishgranter’s favor.)"
+            g "(There is just no other choice.)"
+            g "(...)"
+            g "(This looks… different,  though.)"
+            dragon "That is because it is, trialgoer. Your prize from the belly of the labyrinth rests before you."
+        
+    scene dragon with fastFade
+
+    dragon "Kneel and bare your soul to me. Let me hear you speak, to see if your heart and mind align."
+    dragon "And tell me this: what drives you to push through such torment?"
+
+    menu:
+        "And tell me this: what drives you to push through such torment?"
+
+        "My sister":
+            dragon "Ah, a bleeding heart, one with next to no care for itself."
+
+        "My sister":
+            dragon "Ah, a bleeding heart, one with next to no care for itself."
+
+        "My sister":
+            dragon "Ah, a bleeding heart, one with next to no care for itself."
+
+    dragon "A pitiful beast indeed. Such selflessness is selfish. You only cause grief like this."
+    dragon "But that is not my place to stop, nor to punish. Pitiful as you are, you have done all I require of those who wish for an audience."
+    dragon "Yet I fear I cannot aid you in what you originally sought."
+    g "(...what?)"
+    dragon "Another trialgoer, one from many years past… I smell that brave soul on you. Had it not shared the limitations?"
+    dragon "For such ephemeral things as souls… I cannot return what has already been lost."
+    dragon "…"
+    dragon "Or perhaps you were aware, and yet still raced against not just time but your own body. All for the sake of a sweet soul that longed so heavy, the scent of its wish for you to stay with it for but even a day clings to you."
+    dragon "Some may call it noble. Perhaps it is."
+    dragon "But all the same, you know the truth. You are too late."
+    g "No… no! It can’t… I couldn’t have–!"
+    dragon "It is as I said. Your selflessness shall only cause grief, and it has many times over now. But it is not my place to confer judgement."
+    dragon "I am only here to grant you a wish, one your heart aches for. And despite knowing its end, you still want to save your kin."
+    dragon "…"
+    dragon "There is very little I can do to help in the present. But perhaps I can assuage the grief through the past."
+    dragon "Try again, little trialgoer, and may you be less blind in this next attempt."
+
+    python:
+        resetVariables()
+        room.unoccupy(store.gray_sprite.x, store.gray_sprite.y)
+        room_name = "gray_house"
+                
+        room = getattr(store, room_name)
+        store.gray_sprite.x = 11
+        store.gray_sprite.y = 1
+        room.occupy(11, 1, store.gray_sprite)
+    jump beginning

@@ -4,7 +4,7 @@ image moon gray = "bad.png"
 
 label library:
     # shared start for entering library
-    scene library inside with fastFade
+    scene library with fastFade
 
     if curseTransferObtained and magicLevel >= 2:
         player "(I have everything I need now. I think I can cast the spell to transfer the curse...)"
@@ -109,18 +109,25 @@ label curseTransferEnding:
     g "(And it feels... Terrible. To think [p] had been burdened with this for any amount of time, and still kept that smile of hers on...)"
     g "(...No, I've no time to dwell on this. It's too close to moonhigh.)"
 
+    if (room_name == "town"):
     # If not at home
     # TODO Terra help this might rely on map stuff i don't know your variables
-    # g "(But there's still enough time to go home. To talk to Pink one last time.)"
+        g "(But there's still enough time to go home. To talk to Pink one last time.)"
+        
+        scene black with fastFade
+        scene home-bg with fastFade
     # [fade to black, fade back into home?]
 
     # else, If at home
-    g "(I should talk to Pink one last time.)"
+    else:
+        g "(I should talk to Pink one last time.)"
 
     g "[p]? Are you well?"
+    show pink0004
     p "..."
     p "[g]... what did you do..?"
     g "I enacted a solution. You're free of the curse now, just as I swore you would be."
+    show pink0011
     p "..!!"
     p "But what about you?! I'm not dumb, [g]! You were already in poor health putting everything you had into finding that stupid solution, but even then, you look..."
     p "..."
@@ -130,6 +137,7 @@ label curseTransferEnding:
         p "No, it's {i}worse{/i} than that. I suddenly feel so much better, and {i}you{/i} look like you're going to die at moonhigh, just like the curse said I would. [g], what did you {i}do{/i}?!"
 
         "I transferred the curse.":
+            show pink0004
             p "Why would you do that?!?"
             p "I accepted the fact I would die days ago! I made my peace with it!! And all I wanted was to spend my last moments with you!"
             p "But you were always so busy looking for answers, you never bothered to realize that!"
@@ -138,11 +146,13 @@ label curseTransferEnding:
             p "But now you're saying that'll never get to happen."
 
         "Only keeping the promise I made you.":
+            show pink0004
             p "The one to save me?"
             p "Great! You managed to keep one promise, [g], but was it really worth all the time you left me alone to find an answer?! Was it really worth me having to suddenly realize I'm not just going to live, but I'm going to have to do that without the only family I have left?!"
             p "And..."
             p "And what about all the other promises you're going to break because you did this..?"
     p "..."
+    show pink0011
     p "You promised we would get to spend all of tomorrow together. You {i}promised{/i}."
     p "[g]... Why did you have to do this?"
     #[note: same response but I think they should get different portraits]
@@ -150,9 +160,11 @@ label curseTransferEnding:
         p "[g]... Why did you have to do this?"
 
         "It was the only option I could find, and it was worth it.":
+            show pink0012
             p "..."
 
         "Because I love you.":
+            show pink0011
             p "..."
     p "...You stupid, self-sacrificial dummy..."
     p "Did you ever think I might not want to have to live in a world without you..?"
@@ -163,6 +175,7 @@ label curseTransferEnding:
             p "Maybe, but…"
 
         "I'm sorry.":
+            show pink0007
             p "..."
             p "...I'm sorry, too. For snapping. I know you were just trying to save me."
 
@@ -203,8 +216,8 @@ label spellEnding:
     player "(It was too late.)"
     player "({i}I{/i} was too late.)"
     player "(The curse had taken effect.)"
-    player "([p] lay sprawled out on the table, collapsed. Unmoving. Dead.)"
-    player "(She must have been waiting for me. And I never--)"
+    player "([p] laid)" #TODO: description of how she's dead as hell
+    #she seemed as though she may have been waiting for them. a sibling who never came home in time
     player "([p]...)"
     player "(I'm so sorry. I got so close. Just a little more time, and I {i}know{/i} I could have...)"
     player "(I wasn't enough.)"

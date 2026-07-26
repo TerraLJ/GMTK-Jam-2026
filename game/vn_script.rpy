@@ -1,15 +1,22 @@
-﻿image grave pink = "grave-pink.png"
-
-label beginning:
+﻿label beginning:
     #initialize your sprites here
-    image pink happy = "pink_healthy_happy.png"
+    image grave pink = "grave-pink.png"
+    image pink0000 = "pink0000.png"
+    image pink0001 = "pink0001.png"
+    image pink0002 = "pink0002.png"
+    image pink0003 = "pink0003.png"
+    image pink0004 = "pink0004.png"
+    image pink0005 = "pink0005.png"
+    image pink0006 = "pink0006.png"
+    image pink0007 = "pink0007.png"
+    image pink0008 = "pink0008.png"
+    image pink0009 = "pink0009.png"
+    image pink0010 = "pink0010.png"
+    image pink0011 = "pink0011.png"
+    image pink0012 = "pink0012.png"
 
-    #this is the text bit :)
-    show pink happy
-    p "Hey there?"
-    hide pink happy
 
-    "> The curse will take effect in three days at midnight. You must enact a solution before then."
+    "> The curse will take effect in three days at moonhigh. You must enact a solution before then."
     #blease leave this thank you <3
     jump rpg_section
 
@@ -30,15 +37,14 @@ label endOfDay:
 
 label startOfDay2:
     # fade from black
-    "> The curse will take effect in two days at midnight. You must enact a solution before then."
-    $ declined_breakfast = False
-    $ left_home = False
+    "> The curse will take effect in two days at moonhigh. You must enact a solution before then."
+    # TODO
     scene black with fastFade
     call screen map_screen with fastFade
 
 label startOfDay3:
     # fade from black
-    "> The curse will take effect at midnight. You must enact a solution before then."
+    "> The curse will take effect at moonhigh. You must enact a solution before then."
 
     # check for curse transfer ending prereqs, prompt it if fulfilled
     if curseTransferObtained and magicLevel >= 2:
@@ -127,13 +133,20 @@ label outOfTime:
     jump gameOver
 
 label gameOver:
-    scene grave pink
     menu:
         "> You have failed to break the curse."
 
         "Try again.":
             "> And so it begins again."
-            $ resetVariables()
+            python:
+                resetVariables()
+                room.unoccupy(store.gray_sprite.x, store.gray_sprite.y)
+                room_name = "gray_house"
+                
+                room = getattr(store, room_name)
+                store.gray_sprite.x = 11
+                store.gray_sprite.y = 1
+                room.occupy(11, 1, store.gray_sprite)
             jump beginning
         
         "Give up. (This will take 1 action.)":

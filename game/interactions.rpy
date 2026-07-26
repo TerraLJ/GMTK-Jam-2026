@@ -34,6 +34,7 @@
             room_name = "town"
             teleport_x = 23+buffer
             teleport_y = 17+buffer
+            left_home = True
         else:
             room_name = "gray_house"
             teleport_x = 7

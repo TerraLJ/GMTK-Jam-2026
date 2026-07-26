@@ -27,7 +27,7 @@ label npc1Chat:
     return
 
 label npc2Chat:
-    "Did someone take all our crops???? Where did they go"
+    "Did someone take all our crops???? Where did they go?"
     $ global commentFlag
     $ commentFlag = False
 

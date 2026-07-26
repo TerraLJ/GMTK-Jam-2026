@@ -2,6 +2,7 @@ image moon pink = "comfort.png"
 
 # dialogue for interacting with Pink as Grey
 label pink_interaction:
+    scene home-bg with fastFade
     # decides which conversation to jump to for Pink
     if day == 1 and not ate_breakfast1:
         jump p_breakfast1
@@ -25,6 +26,7 @@ label pink_interaction:
 
 label p_breakfast1:
     # TODO: IMPLEMENT PORTRAITS AND EXPRESSION CHANGES
+    show pink0000
     if not left_home and not declined_breakfast:
         p "Oh, I..."
         p "I really thought you were just going to head out immediately again."
@@ -40,27 +42,35 @@ label p_breakfast1:
 
         "Eat breakfast with [p]. (This will take 1 action.)":
             g "...I suppose it's been some time since I last had a meal..."
+            show pink0004
             p "What?!"
             p "When's the last time you ate?"
             g "..."
             g "You know I've been busy."
             p "So busy you can't eat??"
+            show pink0009
             p "Don't be like that, [g]! You're the one who always told me we need to rest and eat to be able to do other things!" 
             p "I know you're worried about the curse, but it's only going to get harder to do things if you keep neglecting yourself!"
             g "But-"
             p "Nuh-uh! Not hearing it right now!"
             p "Let's get some food in the both of us, okay?"
             # fade to black, sound effects of dishes clinking and such? breakfast getting set up
+            scene black with fade
+            scene home-bg with fastFade
+            show pink0000
             g "(...This is nice.)"
             g "(I've hardly any time recently for such... frivolities. But just the same...)"
             g "(I can't recall the last time I was able to share a meal with her, since the curse.)"
             g "(...)"
             g "(She looks so happy.)"
+            show pink0002
             p "..!"
             p "What's up? You're looking at me all serious."
+            show pink0008
             p "..."
             p "...If it's about having to spend extra time doing the dishes, I'll do them, don't worry..!"
             p "Go ahead and go out into town and do... Do your research stuff!"
+            show pink0012
             p "..."
             p "But, um... thanks. For having breakfast with me."
             p "I really missed it."
@@ -68,6 +78,7 @@ label p_breakfast1:
             $ ate_breakfast1 = True
 
         "I don't have time.":
+            show pink0007
             g "I'm sorry, [p]. There's just too little time left, with the curse."
             g "But I promise we will after I have an answer for it."
             p "..."
@@ -81,9 +92,11 @@ label p_breakfast1:
 label p_breakfast2:
     if left_home or declined_breakfast:
         # If [Gray] leaves the building and returns OR after denying the meal
+        show pink0007
         p "I don't really want to have this if you don't have some, too."
     
     else:
+        show pink0000
         p "Good morning…! "
         p "I, um… I made food for the both of us again."
 
@@ -92,18 +105,21 @@ label p_breakfast2:
             g "(...I don't think that's true. Only one of the plates is steaming, and the one in front of her isn't.)"
             g "(It might be my uneaten meal from yesterday. She set the warm one out for me.)"
             p "I just thought that maybe you'd be really hungry now, so... I gave you some extra!"
-        
+
+    show pink0002  
     p "So, [g]... could you please eat with me?"
 
     menu:
         "> You have [actionsLeft] actions left."
 
         "Eat breakfast with [p]. (This will take 1 action.)":
+            show pink0003
             p "..!" 
             p "Thank you! I really hope you enjoy it. And I'll handle the dishes today too, so don't worry…!"
 
             # If not on track for the comfort end: TODO
             if lovedOneProgression < 10:
+                show pink0001
                 g "(...She looks like she wants to say more.)"
                 g "(I wish I could ask what's on her mind, but I really can't afford to waste any more time.)"
                 g "(Still… It is the least I can do, to offer gratitude.)"
@@ -112,10 +128,12 @@ label p_breakfast2:
 
             # Otherwise:
             else:
+                show pink0000
                 g "I appreciate it."
                 p "And I appreciate that you're hanging out with me! "
                 p "I know you'd probably like to go back to researching how to get rid of the curse, but... As I said, this means a lot to me."
 
+            show pink0005
             g "(We ate the rest of our meal in silence. And afterward...)"
             p "Don't you feel better now that you ate? You even {i}look{/i} a little better, too!"
             g "(I suppose I do feel a little more refreshed.)"
@@ -123,6 +141,7 @@ label p_breakfast2:
             $ ate_breakfast2 = True
 
         "I don't have time.":
+            show pink0007
             g "I'm sorry, truly, but there just isn't-"
             p "Time. There just isn't time. I know..."
             p "Maybe... Maybe later, then."
@@ -134,12 +153,17 @@ label p_breakfast2:
 label p_convo1:
     #If [Gray] has left the house but came back TODO
     if left_home:
+        show pink0000
+
         p "[g]! Hi!"
+        show pink0002
+
         p "..."
         p "Um... you're back early. Is everything okay?"
 
     # If [Gray] has not left after breakfast
     else:
+        show pink0002
         p "...Is everything okay?"
 
     menu:
@@ -149,20 +173,28 @@ label p_convo1:
             jump p_sweetsQuestStart
 
         "Everything's fine.":
+            show pink0005
             p "Oh, okay! I'll just, um..."
             p "I'll just be here if you need me, then!"
 
         "I just wanted to check on you.":
+            
+            show pink0008
             p "..!"
             p "..."
+            
+            show pink0000
             p "...Aw, that's sweet! And, uh... Thanks for asking. I'm doing okay, promise!"
     # back to rpg mode
     scene black with fastFade
     call screen map_screen with fastFade
 
 label p_sweetsQuestStart:
+    show pink0008
     p "Oh! Um, was there something you wanted to talk about? "
     g "Not especially. I just wanted to listen to you speak for a while. "
+
+    show pink0012
     p "Ah, well..."
     p "I hadn't had the time to do much yet today--or at least, nothing you wouldn't already know about!"
     p "But I can't even begin to tell you just how much it meant to me that you agreed to have a meal with me."
@@ -171,9 +203,11 @@ label p_sweetsQuestStart:
     p "And, um... I'm sorry if this sounds really selfish of me, but... It also gets really lonely when you're out. So getting to spend even a little bit of time with you right now helps that feeling a lot."
 
     menu:
+        
         p "And, um... I'm sorry if this sounds really selfish of me, but... It also gets really lonely when you're out. So getting to spend even a little bit of time with you right now helps that feeling a lot."
 
         "I'm glad it's helping you.":
+            show pink0003
             p "And I'm glad it's helping the both of us!"
             p "I hope we'll have the time to have more meals together, too. I know you'll probably be busy for the rest of the day, but..."
             p "Maybe we can have one tomorrow, at least?"
@@ -182,15 +216,19 @@ label p_sweetsQuestStart:
                 p "Maybe we can have one tomorrow, at least?"
 
                 "Of course.":
+                    show pink0008
                     p "..!"
+                    show pink0000
                     p "Well! I'll hold you to it, then! I'll even make your favorites so it's even harder to forget!"
 
                 "I don't know...":
+                    show pink0012
                     p "We can figure out if it works later..."
                     p "But there's got to be a little time to spare... Especially since food will give you more energy to spend on all your research stuff!"
                     p "So just... Give it a thought, okay?"
 
         "I'm sorry to leave you alone so much.":
+            show pink0006
             p "..."
             p "It's okay! I know why you're doing it. Breaking the curse is really important."
             p "And, if anything... I just wish I could help you more. I know you're really worried that something would happen to me if I did, but..."
@@ -198,8 +236,10 @@ label p_sweetsQuestStart:
             p "..."
             p "But I know you're just a worrywart, so... I understand why you want me here, where it's safe."
 
+    show pink0005
     p "Anyway... I dunno! That's about all I can really think of talking about right now. What about you?"
     g "I suppose… if it might soothe you a little more, is there anything I might be able to get you?"
+    show pink0000
     p "Oh..!"
     p "Well... I guess so? But it's nothing big or anything. It's not even that important."
     p "But if you find yourself at the shop, could you maybe grab me some sweets?"
@@ -218,16 +258,20 @@ label p_sweetsQuestStart:
 label p_sweetsQuestDeliver:
     if sweetsQuestProgression < 3:
         # dialogue chain reminding you about the quest
+        show pink0012
         p "You really don't have to go get any candy, though, if it's too much trouble! I'll see if I can find what I need to get some myself later."
     else:
         #delivering the sweets and the crystal
+        show pink0003
         p "Oh, you're back!"
         menu:
             "> You have [actionsLeft] actions left."
             
             "Deliver the sweets. (This will take 1 action.)":
+                show pink0000
                 p "You got them? You really got them?"
                 p "Oh, thank you, [g]! Thank you!!"
+                show pink0001
                 p "..."
                 p "I, um... I wasn't worried that you wouldn't, exactly. It was just a little favor and all."
                 p "But... I didn't feel sure you would, you know?"
@@ -238,13 +282,18 @@ label p_sweetsQuestDeliver:
                 p "I guess not! It's not really like you to do that."
                 g "Exactly. Though perhaps I… do have something of a surprise for you, still."
                 g "(I pulled out the second crystal I had gathered from the cave.)"
+                show pink0002
                 p "Oh, that's so pretty. Where'd you get it?"
                 g "The shopkeeper was kind enough to let me trade the crystals from the cave for goods. I had a little more than I needed, though, and thought perhaps you might find some joy in having it."
+                show pink0008
                 p "The... Cave? As in the one west of here rumored to house the Wishgranter?"
                 g "That one, yes."
+                show pink0004
                 p "But that had to have..."
                 p "..."
+                show pink0007
                 p "Um, nevermind."
+                show pink0000
                 p "Anyway, uh... This kinda reminds me! While you were gone, I had my own little adventure!"
                 g "..!"
                 p "Before you worry, it wasn't much, I promise. I just went out to spend some time by the river."
@@ -265,6 +314,7 @@ label p_sweetsQuestDeliver:
             
             "Hold off for now.":
                 g "(...Maybe I'll give this to her a little later...)"
+                show pink0003
                 p "Um... Be safe out there..!"
     # back to rpg mode
     scene black with fastFade
@@ -273,10 +323,13 @@ label p_sweetsQuestDeliver:
 label p_convo2:
     #+If [Gray] has left the house but came back
     if left_home:
+        show pink0000
         p "Welcome back!"
     #+ If [Gray] has not left after breakfast
     else:
+        show pink0000
         p "You know, I'm glad you're still hanging around. It's nice."
+        show pink0005
         p "But, um..."
 
     p "What's up?"
@@ -284,9 +337,11 @@ label p_convo2:
         "> You have [actionsLeft] actions left."
 
         "I just want to talk with you. (This will take 1 action.)":
+            show pink0012
             p "..."
             p "I... I don't know if I have much to talk about. I don't even know if I'll have much to talk about tonight, either."
             p "There's just not a lot going on for me. And, um... honestly, I think the stress is starting to get to me, too."
+            show pink0003
             p "But I'm sure it'll be fine! It does mean going out to the river again sounds like a lot, though."
             p "I'm thinking I'll do something calm at home today. Like, um… knitting. Or reading."
 
@@ -294,15 +349,20 @@ label p_convo2:
                 p "I'm thinking I'll do something calm at home today. Like, um… knitting. Or reading."
 
                 "I didn't know you could knit.":
+                    show pink0003
                     p "Haha! Yeah, um... I don't. But trial by fire, you know? Best way to learn!"
 
                 "There aren't many books here.":
+                    show pink0003
                     p "I know. But there's nothing wrong with rereading old favorites!"
 
             g "...But there is also a library nearby. It... Might not be too strenuous for you to visit and find something of value."
             g "I could even walk you there."
+            show pink0008
             p "..!"
+            show pink0001
             p "..."
+            show pink0012
             p "I... I appreciate the offer. I really do. But I think I'll be fine with what we have here. I mean, you... Um..."
             p "You really do keep a lot of your old beginner casting books. Why have you toted them around for this long?"
             g "...I suppose for not a particularly good reason, but... It was in the case you ever needed to learn. Had you ever chosen to, it would have been very simple to pass them down to you."
@@ -310,8 +370,10 @@ label p_convo2:
             g "...I know. But, as I said, it was in case you ever did need to do so."
             p "Well... I still don't need to, but... Maybe I'll learn it anyway. There's not much better to do..!"
             g "It can be rather dull."
+            show pink0003
             p "I can handle that, silly. A little bit of textbook reading never killed anyone, and... And I think it's better to read that sort than lay around and waste the day away entirely."
             g "...That is... Decidedly true."
+            show pink0000
             p "See? It'll be fine! So don't worry about me and just... Do what you need to do, okay?"
             $ lovedOneProgression += 1
             $ actionsLeft -= 1
@@ -319,6 +381,7 @@ label p_convo2:
                 jump endOfDay
 
         "Nothing.":
+            show pink0000
             p "That's good, I think! Better to have nothing of note going on, with all the stuff already weighing on you."
     # back to rpg mode
     scene black with fastFade
@@ -328,24 +391,33 @@ label p_libraryQuestStart:
     # [FOR REGULAR ROUTES ONLY]
     if lovedOneProgression < 3:
         # unreachable. whatever
+        show pink0000
         p "Oh, don't worry about me feeling bored! If it really gets that bad, I'll..."
+        show pink0001
         p "..."
+        show pink0000
         p "...I'll go get it myself! Yeah!"
 
     else:
+        show pink0000
         p "Is there… something else you wanted to say to me?"
         menu:
             p "Is there… something else you wanted to say to me?"
 
             "Would you like me to bring you a book from the library?":
+                show pink0002
                 p "I mean, I guess I kinda do? I just... I dunno. I don't want to bother you."
+                show pink0001
                 p "..."
+                show pink0003
                 p "..But it would be very nice. When we first arrived, the librarian had recommended I check out this one about the cats and the sun."
                 p "Just don't go out of your way to get me that, okay?"
                 #[BOOK QUEST START]
+                $ bookQuestProgression += 1
                 $ lovedOneProgression += 1
 
             "Not especially. I wanted to check in on you.":
+                show pink0000
                 p "Oh. Alright! And, um... I'm doing okay."
     # back to rpg mode
     scene black with fastFade
@@ -354,22 +426,27 @@ label p_libraryQuestStart:
 label p_libraryQuestDeliver:
     if bookQuestProgression < 2:
         # dialogue chain reminding you about the quest
+        show pink0006
         g "(She looks tired. Maybe that's why she didn't even suggest she's going to try and get one herself.)"
         g "(...)"
         g "(I should really go over there and find something for her to read.)"
     else:
         #delivering the book
+        show pink0005
         p "What's up?"
         menu:
             "> You have [actionsLeft] actions left."
 
             "Deliver the library book. (This will take 1 action.)":
+                show pink0008
                 p "..!"
                 g "(Ah… I should have realized that regardless of what she said, she would get upset by such an act when she declined to go herself. She's too headstrong to suggest she could not do it herself.)"
                 g "[p], I-"
+                show pink0003
                 p "...Thank you."
                 g "What?"
                 p "Thank you for bringing me a book. And for taking the time out of your research to try and make me happy."
+                show pink0007
                 p "I know you've been wanting to focus on finding an answer or cure or... Something, for this curse. A part of me wants that, too."
                 p "But I've watched you struggle up until yesterday, and... I don't know. I think with the way we've been going, we would have {i}both{/i} ended up dead."
                 p "And I really don't think that trying to save me is worth driving yourself into an early grave."
@@ -378,30 +455,39 @@ label p_libraryQuestDeliver:
                     p "And I really don't think that trying to save me is worth driving yourself into an early grave."
                     
                     "It's worth it if it could save you.":
+                        show pink0009
                         p "If that meant losing my big sibling and having to deal with that life all alone, I don't know if it is."
+                        show pink0012
                         p "And even if it was… I think you and I both know saving me isn't really your goal anymore. Otherwise, you'd probably not even be talking to me right now."
                         p "Don't worry, though. I think that's the best course of action, too."
 
                     "I realized there might be something more important.":
-                    p "..."
-                    p "...Yeah. I guess you must've, huh?"
+                        show pink0001
+                        p "..."
+                        p "...Yeah. I guess you must've, huh?"
 
+                show pink0003
                 p "But anyway... We still have a whole day tomorrow, and... Well, I know you got it for me to read today, but if you'd be up for it... Maybe we could read the book together then?"
                 g "How will you spend the rest of today, then?"
                 p "Um… just talking to you, I guess! There's something I wanted to ask since yesterday, anyway."
+                show pink0005
                 p "Did you really go into the cave adventurers were known to die in without any weapons?"
                 g "...I wasn't truly weaponless. Even besides the minor spells I know, I..."
                 g "I brought the old training sword you had."
+                show pink0008
                 p "That toy? That thing could hardly scare off a rat, let alone anything that could really hurt you!"
                 p "If you ever go back there again, you should really try and get some better equipment first. Doesn't this town even have a blacksmith?"
                 g "I was hardly at risk. I only needed to grab the crystals."
                 g "But... I will keep that in mind, if I do indeed return there."
+                show pink0002
                 p "Good. That's good."
+                show pink0007
                 p "..."
                 p "...Thinking about that sword makes me miss adventuring again, though. I killed my first monster with that thing. Even if said monster was just... Kind of an overgrown rodent."
                 p "But that was also far from home. Do you still remember that, and how we were lost for weeks? I think it's that kind of joy of exploration and discovery that I really miss."
                 p "..."
                 p "...And the thrill of fighting things that might curse you, too, I guess. Haha..."
+                show pink0003
                 p "But, um... I guess it's kind of late now already, isn't it?"
                 p "Let's get some rest so we can try and enjoy as much of tomorrow as we can, okay?"
                 #[BOOK QUEST COMPLETE]
@@ -413,6 +499,7 @@ label p_libraryQuestDeliver:
             
             "Not now.":
                 g "Nevermind, it's nothing."
+                show pink0005
                 p "Oh... Okay."
                 g "(...Maybe I'll give this to her a little later...)"
     # back to rpg mode
@@ -434,20 +521,24 @@ label p_comfortEndingInitiate:
 
 label comfortEnding:
     g "Good morning, [p]."
+    show pink0000
     p "Morning..!"
     g "(...Oh. She's stumbling.)"
     p "Did you get to look outside yet? It looks really nice! The skies are clear, and there's a breeze..."
+    show pink0003
     p "Maybe we could go have a little... Picnic or something? And read the book together while we're out there?"
 
     menu:
         p "Maybe we could go have a little... Picnic or something? And read the book together while we're out there?"
 
         "That sounds nice.":
+            show pink0000
             p "Yay! I'll go get everything we need, don't worry!"
             g "..."
             g "Perhaps we can do this faster if I help, [p]?"
+            show pink0002
             p "Well... I guess I would appreciate the help!"
-            #[FOLLOWING BGS ARE ALL OUTSIDE] TODO
+            scene river with fastFade
 
         "I'm not sure we should do that.":
             g "(She just doesn't look like she's in any state to go out right now.)"
@@ -460,8 +551,11 @@ label comfortEnding:
 
     # [rustling noises of cloth? load in appropriate cg based on location] TODO
 
+    show pink0000
     p "Okay! I think we can read now."
+    show pink0001
     p "..."
+    show pink0012
     p "...Hey... Um, maybe this is going to sound really silly, but..."
     p "Instead of us both trying to read it... Do you think you could maybe read it out loud for me?"
     g "(Read it aloud…? I hadn't done anything like that for her since she was a child.)"
@@ -475,6 +569,7 @@ label comfortEnding:
     g "(...)"
     g "(But the more I read this tale, the more it feels morbidly relevant. Just as the sun blazes its way across the sky toward the horizon like a countdown to nightfall, they too are helpless to stop the impending tragedy.)"
     g "(Perhaps the same was always true for us, too. Perhaps a happy ending was never in the cards, no matter what I could have tried.)"
+    show pink0010
     g "(...)"
     g "(...!)"
     g "(...She's crying.)"
@@ -482,12 +577,16 @@ label comfortEnding:
     p "S-sorry... It just..."
     p "The ending just made me think of you. Of… of what will happen when I'm gone."
     g "..."
+    show pink0012
     p "...But that's too sad to talk about right now. There's still a good bit of time before moonhigh, and I don't want it to be all sad."
-
+    jump comfortEnding2
     #+ If they are not outside TODO
     # Hoping this doesn't need a separate variable? But idk
+    
+    show pink0007
     p "Though... maybe now it'd be a good time to go out?"
 
+    show pink0000
     p "I... I mean, the sunset's gonna be pretty, and… maybe you can talk about the stars again?"
     p "Like when you used to tell me all about the stories behind those constellations?"
     p "No reason for all of that to be a downer because we talked about… stuff, right..?"
@@ -502,19 +601,23 @@ label comfortEnding:
     p "The stars seem extra sparkly tonight."
     g "...They do, don't they?"
     p "I'm glad I got to see them before... Before..."
+    show pink0012
     p "..."
     jump comfortEnding2
 
 label comfortEnding2:
     p "...Hey, [g]?"
     g "Yes?"
+    show pink0001
     p "You know, I'm... I'm still scared. I don't {i}want{/i} to die."
+    show pink0000
     p "But I think I accepted it was gonna happen a few days ago. "
     p "That's why I wanted to spend all this time with you. So maybe we could both end today not needing to regret the fact we didn't spend these last moments together."
     p "And I'm really glad we could! I missed being able to hang out with you."
+    show pink0007
     p "But... can I ask you for one more thing?"
     g "..."
-    g "...I can do my best, but there's really not much I can give before midnight. There's just so little time."
+    g "...I can do my best, but there's really not much I can give before moonhigh. There's just so little time."
     p "It's nothing big, I swear. You don't even have to get up."
     p "I just... I just want you to promise me something."
     p "Just promise me you'll take care of yourself when I'm gone."
@@ -522,6 +625,7 @@ label comfortEnding2:
         p "Just promise me you'll take care of yourself when I'm gone."
 
         "...":
+            show pink0004
             p "Please? I... I'm worried you'll just let yourself wither away."
             p "Ever since it happened, you've not been taking care of yourself like you used to."
             p "And I'm scared that after tonight, you'll just... let go entirely."
@@ -530,6 +634,7 @@ label comfortEnding2:
                 p "And I'm scared that after tonight, you'll just... let go entirely."
 
                 "...":
+                    show pink0011
                     p "I just don't want you to die, too. I don't want you to die because you let your guilt eat you alive."
                     p "I know you tried your best. I {i}watched{/i} you work yourself to the bone. I just didn't realize just how badly you were doing that until you told me you couldn't remember the last time you ate."
                     p "You were neglecting yourself. And, looking back now... I think maybe you were about to start neglecting to spend time with me. And even if you had done that... I don't know if that would have made things any better."
@@ -550,6 +655,7 @@ label plead:
         p "Can you promise me that? Please?"
 
         "...":
+
             p "{i}Please?{/i} "
             jump plead
         
@@ -557,6 +663,7 @@ label plead:
             jump promiseAccept
 
 label promiseAccept:
+    show pink0011
     p "Thank you."
     # [cg of [Gray] looks at the sky. The moon is almost at its zenith]
     scene moon gray
@@ -599,6 +706,7 @@ label promiseAccept:
 label p_day3:
     g "(She looks weak...)"
     g "(I {i}will{/i} have a solution before moonhigh. There is no other option.)"
+    show pink0007
     p "...[g]?"
     scene black with fastFade
     call screen map_screen with fastFade

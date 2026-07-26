@@ -32,9 +32,6 @@ default p_curseBreakDiscovered = False
 # Day and action related variables
 default day = 1
 default actionsLeft = 3
-
-default ate_breakfast1 = False
-default ate_breakfast2 = False
 default declined_breakfast = False
 default left_home = False
 
@@ -45,6 +42,7 @@ default ate_breakfast1 = False
 default ate_breakfast2 = False
 
 default visited_cave = False
+
 default visited_shop = False
 default visited_blacksmith = False
 default hasPurchased = False
@@ -102,9 +100,6 @@ init python:
         wishSwordStarted = False
 
         visited_cave = False
-        visited_shop = False
-        visited_blacksmith = False
-        hasPurchased = False
 
         # resetting the curse transfer discovery actually to avoid bugs
         g_curseTransferDiscovered = False

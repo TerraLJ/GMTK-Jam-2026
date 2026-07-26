@@ -12,7 +12,7 @@
 ##
 ## The _() surrounding the string marks it as eligible for translation.
 
-define config.name = _("Game Jam 2026")
+define config.name = _("'Til Moonhigh")
 
 
 ## Determines if the title given above is shown on the main menu screen. Set
@@ -30,6 +30,24 @@ define config.version = "1.0"
 ## triple-quotes, and leave a blank line between paragraphs.
 
 define gui.about = _p("""
+CREDITS:
+
+TerraLJ (overworld programming, overworld backgrounds and sprites, bug testing)
+
+MaddieandAngel (visual novel programming, writing, sprite coloring)
+
+CelesteOri (writing, visual novel backgrounds and sprites)
+
+Inspirations:
+Persona 3 by Atlus
+- No More Birthdays by Sophie May
+- Jumalanpelko by Sysi
+- The Time We Have by Elliot Davis
+- Slipping Through My Fingers by ABBA
+- In Stars and Time by insertdisc5
+- Nier Replicant by Square Enix
+- Kagerou Daze by Jin
+- Bad End Theater by Nomnomnami
 """)
 
 
@@ -37,7 +55,7 @@ define gui.about = _p("""
 ## distribution. This must be ASCII-only, and must not contain spaces, colons,
 ## or semicolons.
 
-define build.name = "GameJam2026"
+define build.name = "tilmoonhigh"
 
 
 ## Sounds and music ############################################################
@@ -143,7 +161,7 @@ default preferences.afm_time = 15
 ## This generally should not be changed, and if it is, should always be a
 ## literal string, not an expression.
 
-define config.save_directory = "GameJam2026-1784765389"
+define config.save_directory = "tilmoonhigh-1784765389"
 
 
 ## Icon ########################################################################

@@ -68,45 +68,29 @@ image pink left = "[sprite_sibling]_left_1"
 image pink right = "[sprite_sibling]_right_1"
 
 image gray front_move:
-    "[sprite_player]_front_1" with None
-    0.15
     "[sprite_player]_front_2" with None
     0.2
     "[sprite_player]_front_3" with None
-    0.15
-    "[sprite_player]_front_4" with None
     0.2
     repeat
 
 image gray back_move:
-    "[sprite_player]_back_1" with None
-    0.15
     "[sprite_player]_back_2" with None
     0.2
     "[sprite_player]_back_3" with None
-    0.15
-    "[sprite_player]_back_4" with None
     0.2
     repeat
 
 image gray left_move:
-    "[sprite_player]_left_1" with None
-    0.15
     "[sprite_player]_left_2" with None
     0.15
     "[sprite_player]_left_3" with None
     0.15
-    "[sprite_player]_left_4" with None
-    0.15
     repeat
 
 image gray right_move:
-    "[sprite_player]_right_1" with None
-    0.15
     "[sprite_player]_right_2" with None
     0.15
     "[sprite_player]_right_3" with None
-    0.15
-    "[sprite_player]_right_4" with None
     0.15
     repeat
