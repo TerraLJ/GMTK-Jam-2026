@@ -50,7 +50,7 @@ label shopHub:
             python:
                 g_curseTransferDiscovered = True
                 actionsLeft -= 1
-                renpy.jump (shopHub)
+            jump shopHub
 
             if actionsLeft <= 0:
                 g "No, but thank you for telling me about your wares. I may stop by tomorrow to purchase something."
