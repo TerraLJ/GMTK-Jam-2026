@@ -20,14 +20,14 @@
         i += 1
 
     #Bed walls
-    pink_bed_trigger = MapDenizen (0, 0, "lancer", 72, 72, pinkBedInteract)
+    pink_bed_trigger = MapDenizen (0, 0, "bridge blocker.png", 72, 72, pinkBedInteract)
     gray_house.occupy (0, 1, pink_bed_trigger)
     gray_house.occupy (1, 1, pink_bed_trigger)
     gray_house.occupy (2, 1, pink_bed_trigger)
     pink_bed = MapBuilding(3, 1, "pink bed.png", 288, 216, visual_h_tiles=3, interaction=pinkBedInteract)
     gray_house.occupy (3, 1, pink_bed)
 
-    gray_bed_trigger = MapDenizen (0, 0, "lancer", 72, 72, grayBedInteract)
+    gray_bed_trigger = MapDenizen (0, 0, "bridge blocker.png", 72, 72, grayBedInteract)
     gray_house.occupy (12, 1, gray_bed_trigger)
     gray_house.occupy (12, 2, gray_bed_trigger)
     gray_bed = MapBuilding(13, 2, "gray bed.png", 144, 288, visual_h_tiles=4, interaction=grayBedInteract)
@@ -58,6 +58,8 @@
         gray_house.occupy (k, 6, shelf)
         k += 1
 
+    bedroom_wall_3 = MapBuilding(5, 5, "bedroom wall.png", 72, 216, visual_h_tiles=3, interaction=no_op)
+    gray_house.occupy (5, 5, bedroom_wall_3)
     shelf = MapBuilding(5, 6, "shelf and plant.png", 432, 216, visual_h_tiles=3, interaction=no_op)
     gray_house.occupy (5, 6, shelf)
 
@@ -103,7 +105,7 @@
     gray_house.unoccupy (7, 5)
 
     inside_house_door = MapDenizen (7, 14, "house door.png", 49, 49, leave_room)
-    gray_house.occupy (6, 14, inside_house_door)
+    gray_house.occupy (8, 14, inside_house_door)
     gray_house.occupy (7, 14, inside_house_door)
 
     #stupid wall implementation
@@ -175,16 +177,16 @@
     shop_face = MapBuilding (35+buffer, 15+buffer, "store face.png", 512, 216, visual_h_tiles=3, interaction=no_op)
     town.occupy (35+buffer, 15+buffer, shop_face)
 
-    shop = MapDenizen (30+buffer, 15+buffer, "lancer.png", 72, 70, shop)
+    shop = MapDenizen (30+buffer, 15+buffer, "bridge blocker.png", 72, 70, shop)
     town.occupy (30+buffer, 15+buffer, shop)
 
     blacksmith_face = MapBuilding (26+buffer, 7+buffer, "blacksmith face.png", 360, 288, visual_h_tiles=4, interaction=no_op)
     town.occupy (26+buffer, 7+buffer, blacksmith_face)
 
-    blacksmith = MapDenizen (24+buffer, 7+buffer, "lancer.png", 72, 70, blacksmith)
+    blacksmith = MapDenizen (24+buffer, 7+buffer, "bridge blocker.png", 72, 70, blacksmith)
     town.occupy (24+buffer, 7+buffer, blacksmith)
 
-    library_door = MapDenizen (34+buffer, 7+buffer, "lancer.png", 72, 70, library)
+    library_door = MapDenizen (34+buffer, 7+buffer, "bridge blocker.png", 72, 70, library)
     town.occupy (34+buffer, 7+buffer, library_door)
 
     bridge = MapDenizen (27+buffer, 26+buffer, "bridge blocker.png", 72, 70, bridge)
