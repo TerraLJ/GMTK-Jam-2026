@@ -229,3 +229,5 @@ label curseTransferEnding:
             # [fade to black, then to ending]
     scene grave gray
     #[FIN: [Pink] kneeling by a gravestone with a bouquet. In memory of a sibling who gave her their all]
+    "> You will now be returned to the main menu."
+    $ MainMenu(confirm=False)()
