@@ -36,6 +36,8 @@ default breakfast = False
 default left_breakfast = False
 default left_house = False
 
+default visited_cave = False
+
 # Progression of interactions with Pink/Gray
 default lovedOneProgression = 0
 
@@ -56,6 +58,9 @@ init python:
         global sweetsQuestProgression
         global bookQuestProgression
         global wishSwordStarted
+        global visited_cave
+
+        global g_curseTransferDiscovered
 
         swordLevel = 0
         magicLevel = 0
@@ -76,6 +81,11 @@ init python:
         sweetsQuestProgression = 0
         bookQuestProgression = 0
         wishSwordStarted = False
+
+        visited_cave = False
+
+        # resetting the curse transfer discovery actually to avoid bugs
+        g_curseTransferDiscovered = False
         return
 
     def updateMagic():
