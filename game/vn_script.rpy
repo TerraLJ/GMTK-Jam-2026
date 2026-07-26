@@ -23,6 +23,7 @@
 label endOfDay:
     "(I'm exhausted... I don't think I can keep going today.)"
     # fade to black?
+    scene black with fastFade
     $ day += 1
     # TODO: something here to make sure you're at home the next time the game switches to rpg mode
     if day == 2:

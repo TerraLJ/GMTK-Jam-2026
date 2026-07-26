@@ -701,7 +701,27 @@ label promiseAccept:
     p "..."
     p "...Remember that I'll always love you."
     # [FIN: grave and bouquet? In memory of a sister loved]
-    jump gameOver
+    scene black with fastFade
+    scene grave pink with fastFade
+    menu:
+        "> You have failed to break the curse."
+
+        "Try again.":
+            "> And so it begins again."
+            python:
+                resetVariables()
+                room.unoccupy(store.gray_sprite.x, store.gray_sprite.y)
+                room_name = "gray_house"
+                
+                room = getattr(store, room_name)
+                store.gray_sprite.x = 11
+                store.gray_sprite.y = 1
+                room.occupy(11, 1, store.gray_sprite)
+            jump beginning
+        
+        "Accept this.":
+            "> You will now be returned to the main menu."
+            $ MainMenu(confirm=False)()
 
 label p_day3:
     g "(She looks weak...)"
