@@ -109,6 +109,21 @@ label spellEnding:
     player "(I can break the curse.)"
     player "(...)"
     player "-!? (When did it get so late!? I need to get home, now!)"
-    # TODO add more
-    # teleports to home
+    # fade to black
+    player "(I dashed out of the library as fast as I could, neglecting even to collect my belongings.)"
+    # cg of grey looking up at the moon
+    player "It's... Already moonhigh."
+    # fade to black followed by immediate fade out of black? like vision's fading
+    player "(I... I need to get home.)"
+    # fade to black
+    player "{i}[p]!?{/i}"
+    player "(It was too late.)"
+    player "({i}I{/i} was too late.)"
+    player "(The curse had taken effect.)"
+    player "([p] laid)" #TODO: description of how she's dead as hell
+    #she seemed as though she may have been waiting for them. a sibling who never came home in time
+    player "([p]...)"
+    player "(I'm so sorry. I got so close. Just a little more time, and I {i}know{/i} I could have...)"
+    player "(I wasn't enough.)"
+    player "(I... I feel weak. I can't...)"
     jump gameOver
