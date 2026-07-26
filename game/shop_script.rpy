@@ -1,11 +1,12 @@
-﻿label shopMenu:
+﻿define shopkeep = Character("Shopkeeper", color = "#ffffff")
+
+label shopMenu:
     scene shop inside with fastFade
     #mostly for learning purposesx
-    image shopkeep happy = "shopkeep happy.png"
-    image shopkeep embarrassed = "shopkeep embarrassed.png"
-    define shopkeep = Character("Shopkeeper", color = "#ffffff")
+    # image shopkeep happy = "shopkeep happy.png"
+    # image shopkeep embarrassed = "shopkeep embarrassed.png"
 
-    show shopkeep happy
+    # show shopkeep happy
     if not visited_shop:
         shopkeep "Don't think I've seen your face around here before! What can I get ya?"
         player "(...I have a feeling that attempting to talk to him will take up a lot of my time, whether I like it or not.)"
