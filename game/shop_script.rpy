@@ -19,7 +19,6 @@
     # call screen map_screen with fastFade
 
 label shopHub:
-    scene shop with fastFade
     shopkeep "What can I get for ya?"
     menu:
         "> You have [actionsLeft] actions left."
