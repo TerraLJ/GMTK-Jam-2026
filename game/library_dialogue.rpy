@@ -110,13 +110,17 @@ label spellEnding:
     player "(...)"
     player "-!? (When did it get so late!? I need to get home, now!)"
     # fade to black
+    scene black with fastFade
     player "(I dashed out of the library as fast as I could, neglecting even to collect my belongings.)"
     # cg of grey looking up at the moon
-    scene moon gray
+    scene moon gray with fastFade
     player "It's... Already moonhigh."
     # fade to black followed by immediate fade out of black? like vision's fading
+    scene black with fastFade
+    scene moon gray with fastFade
     player "(I... I need to get home.)"
     # fade to black
+    scene black with fastFade
     player "{i}[p]!?{/i}"
     player "(It was too late.)"
     player "({i}I{/i} was too late.)"
