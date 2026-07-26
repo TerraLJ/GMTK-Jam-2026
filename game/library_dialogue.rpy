@@ -100,8 +100,84 @@ label getPinkBook:
         jump library_g
 
 label curseTransferEnding:
-    "placeholder."
-    # this one gets its own game over screen i think
+    g "(It must have worked. I feel as if there is something growing inside my chest, something that wants to wrap my heart and force it still.)"
+    g "(...)"
+    g "(And it feels... Terrible. To think [p] had been burdened with this for any amount of time, and still kept that smile of hers on...)"
+    g "(...No, I've no time to dwell on this. It's too close to moonhigh.)"
+
+    # If not at home
+    # TODO Terra help this might rely on map stuff i don't know your variables
+    g "(But there's still enough time to go home. To talk to Pink one last time.)"
+    # [fade to black, fade back into home?]
+
+    # else, If at home
+    g "(I should talk to Pink one last time.)"
+
+    g "[p]? Are you well?"
+    p "..."
+    p "[g]... what did you do..?"
+    g "I enacted a solution. You're free of the curse now, just as I swore you would be."
+    p "..!!"
+    p "But what about you?! I'm not dumb, [g]! You were already in poor health putting everything you had into finding that stupid solution, but even then, you look..."
+    p "..."
+    p "You look like you're going to die soon."
+    p "No, it's {i}worse{/i} than that. I suddenly feel so much better, and {i}you{/i} look like you're going to die at moonhigh, just like the curse said I would. [g], what did you {i}do{/i}?!"
+    menu:
+        p "No, it's {i}worse{/i} than that. I suddenly feel so much better, and {i}you{/i} look like you're going to die at moonhigh, just like the curse said I would. [g], what did you {i}do{/i}?!"
+
+        "I transferred the curse.":
+            p "Why would you do that?!?"
+            p "I accepted the fact I would die days ago! I made my peace with it!! And all I wanted was to spend my last moments with you!"
+            p "But you were always so busy looking for answers, you never bothered to realize that!"
+            p "Maybe it was wrong of me not to say it outright before today, but… I {i}wanted{/i} to hope that all your efforts would be worth it. That I wouldn't die after all."
+            p "That… that we'd be able to go back to adventuring together after all of this."
+            p "But now you're saying that'll never get to happen."
+
+        "Only keeping the promise I made you.":
+            p "The one to save me?"
+            p "Great! You managed to keep one promise, [g], but was it really worth all the time you left me alone to find an answer?! Was it really worth me having to suddenly realize I'm not just going to live, but I'm going to have to do that without the only family I have left?!"
+            p "And..."
+            p "And what about all the other promises you're going to break because you did this..?"
+    p "..."
+    p "You promised we would get to spend all of tomorrow together. You {i}promised{/i}."
+    p "[g]... Why did you have to do this?"
+    #[note: same response but I think they should get different portraits]
+    menu:
+        p "[g]... Why did you have to do this?"
+
+        "It was the only option I could find, and it was worth it.":
+        p "..."
+
+        "Because I love you.":
+        p "..."
+    p "...You stupid, self-sacrificial dummy..."
+    p "Did you ever think I might not want to have to live in a world without you..?"
+    menu:
+        p "Did you ever think I might not want to have to live in a world without you..?"
+
+        "But you'll manage. I know you will.":
+            p "Maybe, but…"
+
+        "I'm sorry.":
+            p "..."
+            p "...I'm sorry, too. For snapping. I know you were just trying to save me."
+
+    p "But it's going to be hard, having to face the future you just gave me."
+    p "..."
+    p "...There's no point in yelling at you about it, though. Not anymore. There's just no time left to waste on that, and I don't want those to be the last words you hear from me."
+    # [cg of [Pink] hugging [Gray]?]
+    p "Thank you for always trying to help me. No matter if I got mad or frustrated with you, I was always glad to be your sister."
+    p "I'm glad to know you loved me so much you were willing to give up everything for me."
+    p "I hope you know I love you, too. More than the world. And I'll love you when you're gone, too."
+    p "But I'll make it through, even if it's hard. I'll make sure everything you did for me won't be wasted."
+    p "So... So rest now, please. You deserve it."
+    menu:
+        p "So... So rest now, please. You deserve it."
+
+        "Close your eyes.":
+            "..."
+            # [fade to black, then to ending]
+    #[FIN: [Pink] kneeling by a gravestone with a bouquet. In memory of a sibling who gave her their all]
 
 label spellEnding:
     player "(I think... I think I've finally done it.)"
