@@ -203,8 +203,8 @@ label spellEnding:
     player "(It was too late.)"
     player "({i}I{/i} was too late.)"
     player "(The curse had taken effect.)"
-    player "([p] laid)" #TODO: description of how she's dead as hell
-    #she seemed as though she may have been waiting for them. a sibling who never came home in time
+    player "([p] lay sprawled out on the table, collapsed. Unmoving. Dead.)"
+    player "(She must have been waiting for me. And I never--)"
     player "([p]...)"
     player "(I'm so sorry. I got so close. Just a little more time, and I {i}know{/i} I could have...)"
     player "(I wasn't enough.)"
