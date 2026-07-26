@@ -1,6 +1,8 @@
 # for scenes in the cave
 image dragon = "dragon.png"
 
+define dragon = Character("The Wishgranter", color= "#ffbf00")
+
 label caveDialog:
     scene cave inside with fastFade
     if not visited_cave:
